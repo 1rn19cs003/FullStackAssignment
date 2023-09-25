@@ -2,18 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "app.js", // Change this to your entry file (e.g., app.js or server.js)
+            "src": "app.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
-            "src": "/api/(.*)", // Define your API routes here
-            "dest": "/app.js" // Change this to your entry file (e.g., app.js or server.js)
-        },
-        {
-            "src": "/(.*)", // Catch-all route for non-API requests
-            "dest": "/app.js" // Change this to your entry file (e.g., app.js or server.js)
+            "src": "/api/(.*)", 
+            "dest": "/app.js" 
         }
     ]
 }
