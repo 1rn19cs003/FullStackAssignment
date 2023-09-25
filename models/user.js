@@ -21,7 +21,7 @@ const pool = require('../config/database');
 class User {
     static async findAll() {
         try {
-            const query = 'SELECT * FROM users'; // Replace 'users' with your actual table name
+            const query = 'SELECT * FROM "user"'; // Replace 'users' with your actual table name
             const { rows } = await pool.query(query);
             return rows;
         } catch (error) {
@@ -30,10 +30,10 @@ class User {
         }
     }
 
-    static async create(username, email) {
+    static async create(username, email,role) {
         try {
-            const query = 'INSERT INTO users (username, email) VALUES ($1, $2) RETURNING *';
-            const values = [username, email];
+            const query = 'INSERT INTO "users" (username, email,role) VALUES ($1, $2,$3) RETURNING *';
+            const values = [username, email,role];
             const { rows } = await pool.query(query, values);
             return rows[0];
         } catch (error) {
