@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
+const session = require('cookie-session');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swaggerConfig.js');
@@ -23,8 +23,25 @@ const port = process.env.PORT || 3000;
 const secretKey = process.env.JWT_SECRET_KEY;
 
 // Middleware and route handling
+app.set('trust proxy', 1);
 app.use(express.json());
-app.use(session({ secret: secretKey, resave: true, saveUninitialized: true, cookie: { secure: false } }));
+app.use(session({ 
+    cookie: { 
+        secure: true ,
+        maxAge: 60000
+    } ,
+    secret: secretKey,
+    resave: true,
+    saveUninitialized: true,
+}));
+
+
+app.use(function (req, res, next) {
+    if (!req.session) {
+        return next(new Error('Oh no')) //handle error
+    }
+    next() //otherwise continue
+});
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
