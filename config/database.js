@@ -15,7 +15,7 @@ to aviod any Miss operations of Query
 */
 
 const connectWithRetry = () => {
-    console.log('Connecting to the database...');
+    console.log(`Connecting to the database...${process.env.POSTGRES_URL}`);
     pool.connect((err, client, release) => {
         if (err) {
             console.error('Database connection error:', err);
