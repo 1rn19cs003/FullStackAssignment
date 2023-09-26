@@ -38,7 +38,7 @@ app.use('/customers/', Utils.authenticateJWT, authMiddleware.authenticateUser,cu
 app.use('/orders/', Utils.authenticateJWT, authMiddleware.authenticateUser,orderRoutes);
 app.use('/orderitems/', Utils.authenticateJWT, authMiddleware.authenticateUser,orderitemRoutes);
 app.use('/authorbooks/', Utils.authenticateJWT, authMiddleware.authenticateUser,authorbookRoutes);
-// app.use('/login', indexRoutes);
+
 
 
 // app.use('/admin', authMiddleware.authenticateUser, authMiddleware.isAdmin);

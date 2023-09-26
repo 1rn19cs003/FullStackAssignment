@@ -1,34 +1,33 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-// const sequelize = new Sequelize({
-//     dialect: 'postgres',
-//     username: 'your_username',
-//     password: 'your_password',
-//     database: 'your_database',
-//     host: 'localhost', // Your database host
-//     port: 5432,        // Default PostgreSQL port
-//     logging: false     // Disable logging SQL queries (optional)
-// });
-
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 })
-try {
-    pool.connect((err) => {
+
+
+/*
+We can use normal try and catch block but in postgress
+there is one problem while working with online-databse that it 
+mighth try to reconnect if you are not using your server 
+so to prevent from that we again and agin try to connect in config file 
+to aviod any Miss operations of Query
+*/
+
+const connectWithRetry = () => {
+    console.log('Connecting to the database...');
+    pool.connect((err, client, release) => {
         if (err) {
-            console.log('PostgreSQL URL:', process.env.POSTGRES_URL);
-            console.log("Error connecting to database", err);
+            console.error('Database connection error:', err);
+            setTimeout(connectWithRetry, 5000); // Retry after 5 seconds
+        } else {
+            console.log('Connected to the database');
+            release(); // Release the connection
         }
-        else {
-            //to get information about the vercel database
-            //console.log(pool)
-            console.log("Database connection established");
-        }
-    })
-} catch (error) {
-    console.error("Unable to connect to the database:", error);
-}
+    });
+};
+
+connectWithRetry();
 
 
 module.exports = pool;
