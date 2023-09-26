@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('cookie-session');
 
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swaggerConfig.js');
 const app = express();
@@ -23,6 +24,10 @@ const authMiddleware = require('./middlware/auth');
 const port = process.env.PORT || 3000;
 const host = process.env.HOST || 'localhost';
 const secretKey = process.env.JWT_SECRET_KEY;
+
+const CSS_URL =
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
 
 // Middleware and route handling
 app.set('trust proxy', 1);
@@ -49,7 +54,7 @@ app.use(passport.session());
 app.use(cookieParser());
 
 // Serve the Swagger documentation
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec,{customCss:CSS_URL}));
 app.use('/', userRoutes);
 app.use('/books/', Utils.authenticateJWT, authMiddleware.authenticateUser, bookRoutes);
 app.use('/authors/', Utils.authenticateJWT, authMiddleware.authenticateUser,authorRoutes);
