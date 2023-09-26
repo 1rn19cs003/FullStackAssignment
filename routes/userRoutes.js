@@ -122,6 +122,7 @@ const authMiddleware = require('../middlware/auth');
  */
 router.post('/userLogin',UserController.loginUser);
 router.post('/userSignup', UserController.createUser);
+router.get('/',UserController.test);
 router.get('/logout', UserController.logoutUser);
 router.get('/users', Utils.authenticateJWT, authMiddleware.authenticateUser,UserController.getUsers);
 

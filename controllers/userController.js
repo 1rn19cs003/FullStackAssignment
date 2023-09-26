@@ -57,3 +57,11 @@ exports.logoutUser = async (req, res) => {
     }
 }
 
+exports.test=async(req,res)=>{
+    try{
+        res.status(200).send({message:"Test"});
+    }catch(error){
+        res.status(500).send({message:"Server Error"});
+    }
+}
+
