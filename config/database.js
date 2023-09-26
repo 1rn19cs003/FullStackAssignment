@@ -15,13 +15,14 @@ to aviod any Miss operations of Query
 */
 
 const connectWithRetry = () => {
-    console.log(`Connecting to the database...`);
+    console.log(`Connecting to the database...${process.env.PORT}`);
     // ${process.env.POSTGRES_URL}`
     pool.connect((err, client, release) => {
         if (err) {
             console.error('Database connection error:', err);
             setTimeout(connectWithRetry, 5000); // Retry after 5 seconds
         } else {
+            console.log(client);
             console.log('Connected to the database');
             release(); // Release the connection
         }
