@@ -25,7 +25,6 @@ exports.loginUser = async (req, res) => {
             const token = jwt.sign({ Id: users.userid, username: users.username, role: users.role }, secretKey, {
                 expiresIn: '24h',
             });
-
             res.cookie('authToken', token, { httpOnly: true });
             res.status(200).send({ message: "User logged in sucessfully", data: users });
         } else {
@@ -40,7 +39,16 @@ exports.createUser = async (req, res) => {
     try {
         let k = req.body;
         const users = await User.create(k.username, k.password, k.Role);
-        res.status(200).send(users);
+        if (users) {
+            const token = jwt.sign({ Id: users.userid, username: users.username, role: users.role }, secretKey, {
+                expiresIn: '24h',
+            });
+            res.cookie('authToken', token, { httpOnly: true });
+            res.status(200).send({ message: "User logged in sucessfully", data: users });
+        } else {
+            res.status(201).send("Server Issue");
+        }
+
     } catch (error) {
         console.log('error', error)
         res.status(500).send({ message: 'server error' });
@@ -57,11 +65,11 @@ exports.logoutUser = async (req, res) => {
     }
 }
 
-exports.test=async(req,res)=>{
-    try{
-        res.status(200).send({message:"Test"});
-    }catch(error){
-        res.status(500).send({message:"Server Error"});
+exports.test = async (req, res) => {
+    try {
+        res.status(200).send({ message: "Test" });
+    } catch (error) {
+        res.status(500).send({ message: "Server Error" });
     }
 }
 

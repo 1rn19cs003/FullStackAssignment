@@ -126,6 +126,6 @@ router.get('/',UserController.test);
 router.get('/logout', UserController.logoutUser);
 router.get('/users', Utils.authenticateJWT, authMiddleware.authenticateUser,UserController.getUsers);
 
-// Define more routes as needed.
+
 
 module.exports = router;

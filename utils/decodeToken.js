@@ -46,6 +46,7 @@ class Utils {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
     }
+
 }
 
 module.exports = Utils;
