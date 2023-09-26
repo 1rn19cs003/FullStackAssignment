@@ -22,10 +22,10 @@ exports.loginUser = async (req, res) => {
         let k = req.body;
         const users = await User.findOne(k.username, k.password, k.Role)
         if (users) {
-            const token = jwt.sign({ Id:users.userid, username: users.username, role: users.role }, secretKey, {
+            const token = jwt.sign({ Id: users.userid, username: users.username, role: users.role }, secretKey, {
                 expiresIn: '24h',
             });
-            
+
             res.cookie('authToken', token, { httpOnly: true });
             res.status(200).send({ message: "User logged in sucessfully", data: users });
         } else {
@@ -38,11 +38,22 @@ exports.loginUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
     try {
-        const users = await User.create(req.username, req.password, req.role);
+        let k = req.body;
+        const users = await User.create(k.username, k.password, k.Role);
+        res.status(200).send(users);
     } catch (error) {
         console.log('error', error)
         res.status(500).send({ message: 'server error' });
     }
 }
 
-// Add more controller actions as needed.
+
+exports.logoutUser = async (req, res) => {
+    try {
+        res.clearCookie('authToken');
+        res.status(200).send({ message: "User logged out sucessfully" });
+    } catch (error) {
+        res.status(500).send({ message: "server error" });
+    }
+}
+

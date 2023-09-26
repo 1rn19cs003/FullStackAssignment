@@ -15,6 +15,7 @@ const orderRoutes = require('./routes/orderRoutes.js');
 const orderitemRoutes = require('./routes/orderitemRoutes.js');
 const authorbookRoutes = require('./routes/authorbookRoutes.js');
 const passport = require('passport');
+const Utils = require('./utils/decodeToken');
 const authMiddleware = require('./middlware/auth');
 
 
@@ -31,12 +32,12 @@ app.use(cookieParser());
 // Serve the Swagger documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/', userRoutes);
-app.use('/books/', bookRoutes);
-app.use('/authors/',authorRoutes);
-app.use('/customers/',customerRoutes);
-app.use('/orders/',orderRoutes);
-app.use('/orderitems/',orderitemRoutes);
-app.use('/authorbooks/',authorbookRoutes);
+app.use('/books/', Utils.authenticateJWT, authMiddleware.authenticateUser, bookRoutes);
+app.use('/authors/', Utils.authenticateJWT, authMiddleware.authenticateUser,authorRoutes);
+app.use('/customers/', Utils.authenticateJWT, authMiddleware.authenticateUser,customerRoutes);
+app.use('/orders/', Utils.authenticateJWT, authMiddleware.authenticateUser,orderRoutes);
+app.use('/orderitems/', Utils.authenticateJWT, authMiddleware.authenticateUser,orderitemRoutes);
+app.use('/authorbooks/', Utils.authenticateJWT, authMiddleware.authenticateUser,authorbookRoutes);
 // app.use('/login', indexRoutes);
 
 

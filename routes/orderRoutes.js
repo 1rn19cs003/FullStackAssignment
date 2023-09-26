@@ -16,12 +16,15 @@ const authMiddleware = require('../middlware/auth');
  *           format: uuid
  *           description: The unique identifier of the Order.
  *         CustomerID:
- *           type: string
+ *           schema:
+ *           type: array
+ *           items:
+ *              $ref: '#/components/schemas/Customer'
  *           description: The unique identifier of the Customer.
  *         OrderDate:
  *           type: string
  *           description: The email of the Order.
- *         TotalAmount:
+ *         quantity:
  *           type: number
  *           description: The phone number of the Order.
  */

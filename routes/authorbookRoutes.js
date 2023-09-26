@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const autherBooksController = require('../controllers/autherBookIdController');
+const autherBooksController = require('../controllers/autherBookController');
 const Utils = require('../utils/decodeToken');
 const authMiddleware = require('../middlware/auth');
 
@@ -12,19 +12,23 @@ const authMiddleware = require('../middlware/auth');
  *       type: object
  *       properties:
  *         AuthorID:
- *           type: string
- *           format: uuid
+ *           schema:
+ *           type: array
+ *           items:
+ *              $ref: '#/components/schemas/Author'
  *           description: The unique identifier of the author.
  *         bookId:
- *           type: string
- *           format: uuid
+ *           schema:
+ *           type: array
+ *           items:
+ *              $ref: '#/components/schemas/Books'
  *           description: The unique identifier of the Book.
  *         
  */
 
 /**
  * @swagger
- * /autherBookIds:
+ * /authorbooks:
  *   get:
  *     summary: Retrieve list of autherBooks
  *     description: Retrieve list of autherBooks from the database.
@@ -40,7 +44,7 @@ const authMiddleware = require('../middlware/auth');
  *                 $ref: '#/components/schemas/autherBooks'
  *       '500':
  *         description: Internal server error.
- * /autherBookIds/autherBookId:
+ * /authorbooks/autherBookId:
  *   post:
  *     summary: Create a new autherBooks
  *     description: Creates a new autherBooks 
@@ -61,7 +65,7 @@ const authMiddleware = require('../middlware/auth');
  *       '500':
  *         description: Failure creating the cart
  *      
-  * /autherBookIds/{autherBookId}:
+  * /authorbooks/{autherBookId}:
  *   put:
  *     summary: Update a autherBooks
  *     description: Updates an existing autherBooks based on the provided data.
@@ -128,12 +132,11 @@ const authMiddleware = require('../middlware/auth');
  *         description: Failure deleting the autherBooks
  */
 
-// router.get("/", autherBooksController.getAllautherBooks);
-// router.post("/autherBookId", autherBooksController.createautherBooks);
-// router.put("/:autherBookId", autherBooksController.updateautherBooks);
-// router.delete("/:autherBookId", autherBooksController.deleteautherBooks);
-// router.get("/:autherBookId", autherBooksController.getByautherBookId);
+router.get("/", autherBooksController.getAllBookAuthor);
+router.post("/autherBookId", autherBooksController.createBookAuthor);
+router.put("/:autherBookId", autherBooksController.updateBookAuthor);
+router.delete("/:autherBookId", autherBooksController.deleteBookAuthor);
+router.get("/:autherBookId", autherBooksController.getByBookAuthorId);
 
-// Define more routes as needed.
 
 module.exports = router;

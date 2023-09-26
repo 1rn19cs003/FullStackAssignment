@@ -15,10 +15,10 @@ class User {
         }
     }
 
-    static async create(username, email, role) {
+    static async create(username, password, role) {
         try {
-            const query = 'INSERT INTO "users" (username, email,role) VALUES ($1, $2,$3) RETURNING *';
-            const values = [username, email, role];
+            const query = 'INSERT INTO "user" (username, password,role) VALUES ($1, $2,$3) RETURNING *';
+            const values = [username, password, role];
             const { rows } = await pool.query(query, values);
             return rows[0];
         } catch (error) {
@@ -42,7 +42,20 @@ class User {
         }
     }
 
-    // Add more model methods as needed
+    static async findByUserId(Userid){
+        if(!Userid){
+            throw new Error('Userid is required');
+        }
+        try{
+            let query='select * from "user" where Userid=$1';
+            const values=[Userid];
+            const {rows} = await pool.query(query,values);
+            return rows[0];
+        }catch(error){
+            console.error('Error logging user:', error);
+            throw error;
+        }
+    }
 }
 
 module.exports = User;

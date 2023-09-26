@@ -2,7 +2,7 @@
 
 const pool = require('../config/database');
 
-""
+
 class Books {
     static async findAll() {
         try {

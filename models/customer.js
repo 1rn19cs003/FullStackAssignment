@@ -14,13 +14,15 @@ class Customer {
         }
     }
 
-    static async create(name,email,phone) {
+    static async create(customerid, name, email, phone) {
         try {
-            // Insert a new user into the database with values from req body
-            const query = 'INSERT INTO "customer" (name,email,phone) VALUES ($1,$2,$3) RETURNING *';
-            const values = [name,email,phone];
-            const { rows } = await pool.query(query, values);
-            return rows[0];
+            
+                // Insert a new user into the database with values from req body
+                const query = 'INSERT INTO "customer" (Customerid,name,email,phone) VALUES ($1,$2,$3,$4) RETURNING *';
+                const values = [customerid, name, email, phone];
+                const { rows } =await pool.query(query, values);
+                return rows[0];
+        
         } catch (error) {
             console.error('Error creating user:', error);
             throw error;
@@ -58,13 +60,13 @@ class Customer {
     }
 
 
-    static async update(customerId, name,email,phone) {
+    static async update(customerId, name, email, phone) {
         if (!customerId) {
             throw new Error('customerId is required');
         }
         try {
             let query = 'update "customer" set name=$2 ,email=$3 ,phone=$4 where customerid=$1';
-            const values = [customerId,name,email,phone];
+            const values = [customerId, name, email, phone];
             const { rows } = await pool.query(query, values);
             return values;
         } catch (error) {
@@ -73,7 +75,7 @@ class Customer {
         }
     }
 
-    
+
 }
 
 module.exports = Customer;

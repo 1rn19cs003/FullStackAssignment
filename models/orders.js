@@ -15,11 +15,11 @@ class Order {
         }
     }
 
-    static async create(CustomerID,OrderDate,TotalAmount) {
+    static async create(CustomerID,OrderDate,quantity) {
         try {
             // Insert a new user into the database with values from req body
-            const query = 'INSERT INTO "Orders" (CustomerID,OrderDate,TotalAmount) VALUES ($1,$2,$3) RETURNING *';
-            const values = [CustomerID, OrderDate, TotalAmount];
+            const query = 'INSERT INTO "Orders" (CustomerID,OrderDate,quantity) VALUES ($1,$2,$3) RETURNING *';
+            const values = [CustomerID, OrderDate, quantity];
             const { rows } = await pool.query(query, values);
             return rows[0];
         } catch (error) {
@@ -59,13 +59,13 @@ class Order {
     }
 
 
-    static async update(OrderId,CustomerID, OrderDate, TotalAmount) {
+    static async update(OrderId,CustomerID, OrderDate, quantity) {
         if (!OrderId) {
             throw new Error('OrderId is required');
         }
         try {
-            let query = 'update "Orders" set CustomerID=$2 ,OrderDate=$3 ,TotalAmount=$4 where OrderId=$1';
-            const values = [OrderId, CustomerID, OrderDate, TotalAmount];
+            let query = 'update "Orders" set CustomerID=$2 ,OrderDate=$3 ,quantity=$4 where OrderId=$1';
+            const values = [OrderId, CustomerID, OrderDate, quantity];
             const { rows } = await pool.query(query, values);
             return values;
         } catch (error) {

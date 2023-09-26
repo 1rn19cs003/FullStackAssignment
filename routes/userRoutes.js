@@ -45,6 +45,22 @@ const authMiddleware = require('../middlware/auth');
  *                 $ref: '#/components/schemas/User'
  *       '500':
  *         description: Internal server error.
+ * /logout:
+ *   get:
+ *     summary: Destroy session of users
+ *     description: Make ypu to lose the acess over db.
+ *     tags: [UserAuthentication]
+ *     responses:
+ *       '200':
+ *         description: A list of users.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ *       '500':
+ *         description: Internal server error.
  * /userLogin:
  *   post:
  *     summary: Login User
@@ -106,6 +122,7 @@ const authMiddleware = require('../middlware/auth');
  */
 router.post('/userLogin',UserController.loginUser);
 router.post('/userSignup', UserController.createUser);
+router.get('/logout', UserController.logoutUser);
 router.get('/users', Utils.authenticateJWT, authMiddleware.authenticateUser,UserController.getUsers);
 
 // Define more routes as needed.
