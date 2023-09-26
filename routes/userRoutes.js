@@ -78,7 +78,7 @@ const authMiddleware = require('../middlware/auth');
  *   post:
  *     summary: Login User
  *     description: Login user having Username ,password and Role
- *     tags: [User]
+ *     tags: [UserAuthentication]
  *     requestBody:
  *       required: true
  *       content:

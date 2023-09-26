@@ -5,7 +5,6 @@ const Utils = require('../utils/decodeToken');
 
 exports.getUsers = async (req, res) => {
     try {
-        console.log("no call");
         // const authToken = req.cookies.authToken;
         // console.log(authToken);
         // const decodedInfo = await Utils.decodeToken(authToken, secretKey);

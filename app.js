@@ -8,7 +8,8 @@ const app = express();
 
 
 const userRoutes = require('./routes/userRoutes');
-const indexRoutes=require('./routes/indexRoute.js');
+const bookRoutes=require('./routes/bookRoutes.js');
+const authorRoutes=require('./routes/authorRoutes.js');
 const passport = require('passport');
 const authMiddleware = require('./middlware/auth');
 
@@ -26,6 +27,8 @@ app.use(cookieParser());
 // Serve the Swagger documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/', userRoutes);
+app.use('/books/', bookRoutes);
+app.use('/authors/',authorRoutes);
 // app.use('/login', indexRoutes);
 
 
