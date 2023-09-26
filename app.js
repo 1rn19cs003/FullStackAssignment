@@ -54,7 +54,7 @@ app.use(passport.session());
 app.use(cookieParser());
 
 // Serve the Swagger documentation
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec,{customCss:CSS_URL}));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { customCssUrl:CSS_URL}));
 app.use('/', userRoutes);
 app.use('/books/', Utils.authenticateJWT, authMiddleware.authenticateUser, bookRoutes);
 app.use('/authors/', Utils.authenticateJWT, authMiddleware.authenticateUser,authorRoutes);
