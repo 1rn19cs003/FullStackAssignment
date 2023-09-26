@@ -10,6 +10,7 @@ require('dotenv').config();
 //     port: 5432,        // Default PostgreSQL port
 //     logging: false     // Disable logging SQL queries (optional)
 // });
+
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 })

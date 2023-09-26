@@ -33,6 +33,7 @@ const UserController = require('../controllers/userController');
  *   get:
  *     summary: Retrieve a list of users
  *     description: Retrieve a list of users from the database.
+ *     tags: [user]
  *     responses:
  *       '200':
  *         description: A list of users.
@@ -44,10 +45,39 @@ const UserController = require('../controllers/userController');
  *                 $ref: '#/components/schemas/User'
  *       '500':
  *         description: Internal server error.
+ * /login/userLogin:
+ *   post:
+ *     summary: Login User
+ *     description: Login user having Username ,password and Role
+ *     tags: [user]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *                user:
+ *                type: object
+ *                properties:
+ *                  username:
+ *                    type: string
+ *                  password:
+ *                    type: string
+ *                  Role:
+ *                    type: string
+ *     responses:
+ *       '200':
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       '500':
+ *         description: Failure creating the cart
+ *      
  */
 
 router.get('/users', UserController.getUsers);
-router.get('/userLogin',UserController.loginUser);
+router.post('/userLogin',UserController.loginUser);
 router.get('/userSignup', UserController.createUser);
 
 // Define more routes as needed.
