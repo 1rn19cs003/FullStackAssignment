@@ -8,8 +8,23 @@
     ],
     "routes": [
         {
+            "src": "/api-docs/(.*)",
+            "dest": "/api-docs/index.html"
+        },
+        {
+            "src": "/api-docs",
+            "dest": "/api-docs/index.html"
+        },
+        {
             "src": "/(.*)",
-            "dest": "app.js"
+            "dest": "app.js",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+            ]
         }
     ]
 }
