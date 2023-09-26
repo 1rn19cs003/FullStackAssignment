@@ -120,7 +120,7 @@ CREATE TYPE Role AS ENUM ('admin', 'customer');
 
 -- Create the user table
 CREATE TABLE "user" (
-    userId UUID PRIMARY KEY,
+    userId UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     username VARCHAR(255),
     password VARCHAR(255),
     role Role
@@ -128,13 +128,13 @@ CREATE TABLE "user" (
 
 -- Create the Authors table
 CREATE TABLE "Authors" (
-    AuthorID UUID PRIMARY KEY,
+    AuthorID UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     Name VARCHAR(255)
 );
 
 -- Create the Books table
 CREATE TABLE "Books" (
-    bookId UUID PRIMARY KEY,
+    bookId UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     title VARCHAR(255),
     isbn VARCHAR,
     price VARCHAR,
@@ -143,7 +143,7 @@ CREATE TABLE "Books" (
 
 -- Create the customer table
 CREATE TABLE "customer" (
-    customerId UUID PRIMARY KEY,
+    customerId UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     name VARCHAR(255),
     email VARCHAR(255),
     phone VARCHAR
@@ -151,18 +151,19 @@ CREATE TABLE "customer" (
 
 -- Create the Orders table
 CREATE TABLE "Orders" (
-    OrderID UUID PRIMARY KEY,
+    OrderID UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     CustomerID UUID,
     OrderDate TIMESTAMP,
-    TotalAmount DECIMAL(10, 2)
+    quantity INTEGER
 );
+
 
 -- Create the OrderItems table
 CREATE TABLE "OrderItems" (
-    orderItemId UUID PRIMARY KEY,
+    orderItemId UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     OrderID UUID,
     bookId UUID,
-    quantity INTEGER
+    TotalAmount DECIMAL(10, 2)
 );
 
 -- Create the autherBooks table
@@ -190,3 +191,12 @@ ALTER TABLE "autherBooks"
 
 ALTER TABLE "autherBooks"
     ADD CONSTRAINT "FK_autherBooks_bookId" FOREIGN KEY (bookId) REFERENCES "Books"(bookId);
+    
+ALTER TABLE Orders
+ADD COLUMN quantity INTEGER;
+
+
+ALTER TABLE OrderItems
+ADD COLUMN TotalAmount DECIMAL(10, 2);
+
+CREATE TABLE "Orders2" as select OrderID ,CustomerID ,bookId ,OrderDate ,quantity from "Orders"

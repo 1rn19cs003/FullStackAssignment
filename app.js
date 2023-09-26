@@ -10,6 +10,10 @@ const app = express();
 const userRoutes = require('./routes/userRoutes');
 const bookRoutes=require('./routes/bookRoutes.js');
 const authorRoutes=require('./routes/authorRoutes.js');
+const customerRoutes = require('./routes/customerRoutes.js');
+const orderRoutes = require('./routes/orderRoutes.js');
+const orderitemRoutes = require('./routes/orderitemRoutes.js');
+const authorbookRoutes = require('./routes/authorbookRoutes.js');
 const passport = require('passport');
 const authMiddleware = require('./middlware/auth');
 
@@ -29,6 +33,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/', userRoutes);
 app.use('/books/', bookRoutes);
 app.use('/authors/',authorRoutes);
+app.use('/customers/',customerRoutes);
+app.use('/orders/',orderRoutes);
+app.use('/orderitems/',orderitemRoutes);
+app.use('/authorbooks/',authorbookRoutes);
 // app.use('/login', indexRoutes);
 
 

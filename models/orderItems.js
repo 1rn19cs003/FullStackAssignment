@@ -3,10 +3,10 @@
 const pool = require('../config/database');
 
 
-class Author {
+class OrderItems {
     static async findAll() {
         try {
-            const query = 'SELECT * FROM "Authors"';
+            const query = 'SELECT * FROM "OrderItems"';
             const { rows } = await pool.query(query);
             return rows;
         } catch (error) {
@@ -15,12 +15,12 @@ class Author {
         }
     }
 
-    static async create(name) {
+    static async create(OrderID, bookId, quantity) {
         try {
             // Insert a new user into the database with values from req body
 
-            const query = 'INSERT INTO "Authors" (name) VALUES ($1) RETURNING *';
-            const values = [name];
+            const query = 'INSERT INTO "OrderItems" (OrderID,bookId,quantity) VALUES ($1, $2,$3) RETURNING *';
+            const values = [OrderID, bookId, quantity];
             const { rows } = await pool.query(query, values);
             return rows[0];
         } catch (error) {
@@ -29,13 +29,13 @@ class Author {
         }
     }
 
-    static async findOne(authorid) {
-        if (!authorid) {
-            throw new Error('authorid is required');
+    static async findOne(orderItemId) {
+        if (!orderItemId) {
+            throw new Error('orderItemId is required');
         }
         try {
-            let query = 'select * from "Authors" where authorid=$1';
-            const values = [authorid];
+            let query = 'select * from "OrderItems" where orderItemId=$1';
+            const values = [orderItemId];
             const { rows } = await pool.query(query, values);
             return rows[0];
         } catch (error) {
@@ -44,13 +44,13 @@ class Author {
         }
     }
 
-    static async delete(authorid) {
-        if (!authorid) {
-            throw new Error('authorid is required');
+    static async delete(orderItemId) {
+        if (!orderItemId) {
+            throw new Error('orderItemId is required');
         }
         try {
-            let query = 'delete from "Authors" where authorid=$1';
-            const values = [authorid];
+            let query = 'delete from "OrderItems" where orderItemId=$1';
+            const values = [orderItemId];
             const { rows } = await pool.query(query, values);
             return values;
         } catch (error) {
@@ -60,22 +60,20 @@ class Author {
     }
 
 
-    static async update(authorId,name) {
-        if (!authorId) {
-            throw new Error('bookId is required');
+    static async update(orderItemId, OrderID, bookId, quantity) {
+        if (!orderItemId) {
+            throw new Error('orderItemId is required');
         }
         try {
-            let query = 'update "Authors" set name=$1';
-            const values = [name];
+            let query = 'update "OrderItems" set OrderID=$2, bookId=$3, quantity=$4 where orderItemId=$1';
+            const values = [orderItemId,OrderID, bookId, quantity];
             const { rows } = await pool.query(query, values);
             return values;
         } catch (error) {
             console.error('Error logging user:', error);
             throw error;
         }
-    }
-
-    
+    }  
 }
 
-module.exports = Author;
+module.exports = OrderItems;

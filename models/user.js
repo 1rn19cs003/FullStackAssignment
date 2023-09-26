@@ -2,7 +2,7 @@
 
 const pool = require('../config/database');
 
-// Define the User model using pg-promise
+""
 class User {
     static async findAll() {
         try {

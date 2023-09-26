@@ -2,7 +2,7 @@
 
 const pool = require('../config/database');
 
-// Define the User model using pg-promise
+""
 class Books {
     static async findAll() {
         try {
@@ -74,8 +74,6 @@ class Books {
             throw error;
         }
     }
-
-    // Add more model methods as needed
 }
 
 module.exports = Books;

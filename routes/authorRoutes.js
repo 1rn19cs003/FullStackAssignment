@@ -14,10 +14,10 @@ const authMiddleware = require('../middlware/auth');
  *         authorId:
  *           type: string
  *           format: uuid
- *           description: The unique identifier of the Book.
+ *           description: The unique identifier of the Author.
  *         name:
  *           type: string
- *           description: The title of the Book.
+ *           description: The title of the Author.
  */
 
 /**
@@ -25,7 +25,7 @@ const authMiddleware = require('../middlware/auth');
  * /authors:
  *   get:
  *     summary: Retrieve list of Author
- *     description: Retrieve list of Books from the database.
+ *     description: Retrieve list of Authors from the database.
  *     tags: [Author]
  *     responses:
  *       '200':
@@ -67,7 +67,7 @@ const authMiddleware = require('../middlware/auth');
  *     parameters:
  *       - in: path
  *         name: authorId
- *         description: ID of the book to update
+ *         description: ID of the Author to update
  *         required: true
  *         schema:
  *           type: string
@@ -85,7 +85,7 @@ const authMiddleware = require('../middlware/auth');
  *             schema:
  *               $ref: '#/components/schemas/Author'
  *       '500':
- *         description: Failure updating the book
+ *         description: Failure updating the Author
  *   get:
  *     summary: Retrieve a Author using authorId
  *     description: Retrieve a list of Authors from the database.
@@ -123,7 +123,7 @@ const authMiddleware = require('../middlware/auth');
  *         schema:
  *           $ref: '#/components/schemas/Author'
  *       '500':
- *         description: Failure deleting the Book
+ *         description: Failure deleting the Author
  */
 
 router.get("/", AuthorController.getAllAuthor);
