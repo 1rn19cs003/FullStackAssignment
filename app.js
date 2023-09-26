@@ -21,6 +21,7 @@ const authMiddleware = require('./middlware/auth');
 
 
 const port = process.env.PORT || 3000;
+const host = process.env.HOST || 'localhost';
 const secretKey = process.env.JWT_SECRET_KEY;
 
 // Middleware and route handling
@@ -39,7 +40,7 @@ app.use(session({
 
 app.use(function (req, res, next) {
     if (!req.session) {
-        return next(new Error('Oh no')) //handle error
+        return next(new Error('Error')) //handle error
     }
     next() //otherwise continue
 });
@@ -65,6 +66,6 @@ app.use('/authorbooks/', Utils.authenticateJWT, authMiddleware.authenticateUser,
 
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server running on http://${host}:${port}`);
 });
 
