@@ -8,6 +8,7 @@ const app = express();
 
 
 const userRoutes = require('./routes/userRoutes');
+const indexRoutes=require('./routes/indexRoute.js');
 const passport = require('passport');
 const authMiddleware = require('./middlware/auth');
 
@@ -24,12 +25,13 @@ app.use(cookieParser());
 
 // Serve the Swagger documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/', userRoutes);
+// app.use('/login', indexRoutes);
 
 
-app.use('/admin', authMiddleware.authenticateUser, authMiddleware.isAdmin);
-app.use('/profile', authMiddleware.authenticateUser);
-app.use('/user', authMiddleware.authenticateUser, authMiddleware.authorizeUser);
-app.use('/login', userRoutes);
+// app.use('/admin', authMiddleware.authenticateUser, authMiddleware.isAdmin);
+// app.use('/profile', authMiddleware.authenticateUser);
+// app.use('/user', authMiddleware.authenticateUser, authMiddleware.authorizeUser);
 
 
 app.listen(port, () => {

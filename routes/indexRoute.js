@@ -1,10 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('./authMiddleware'); // Adjust the path to your middleware file
+const authMiddleware = require('../middlware/auth'); // Adjust the path to your middleware file
+const Utils = require('../utils/decodeToken');
 
+const UserController = require('../controllers/userController');
 // Apply the authenticateUser middleware to protect the route
-router.get('/protected-route', authMiddleware.authenticateUser, (req, res) => {
-    // Route logic for the protected route
+router.get('/protected-route', Utils.authenticateJWT,authMiddleware.authenticateUser, (req, res) => {
+    try {
+       
+    } catch (error) {
+        res.status(500).send(error);
+    }
 });
 
 // Apply the authorizeUser middleware to restrict access to certain users

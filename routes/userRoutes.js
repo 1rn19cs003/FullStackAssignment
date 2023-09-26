@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/userController');
-
-
+const Utils = require('../utils/decodeToken');
+const authMiddleware = require('../middlware/auth'); 
 
 /**
  * @swagger
@@ -29,11 +29,11 @@ const UserController = require('../controllers/userController');
 
 /**
  * @swagger
- * /login/users:
+ * /users:
  *   get:
  *     summary: Retrieve a list of users
  *     description: Retrieve a list of users from the database.
- *     tags: [user]
+ *     tags: [User]
  *     responses:
  *       '200':
  *         description: A list of users.
@@ -45,11 +45,40 @@ const UserController = require('../controllers/userController');
  *                 $ref: '#/components/schemas/User'
  *       '500':
  *         description: Internal server error.
- * /login/userLogin:
+ * /userLogin:
  *   post:
  *     summary: Login User
  *     description: Login user having Username ,password and Role
- *     tags: [user]
+ *     tags: [UserAuthentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *                user:
+ *                type: object
+ *                properties:
+ *                  username:
+ *                    type: string
+ *                  password:
+ *                    type: string
+ *                  Role:
+ *                    type: string
+ *     responses:
+ *       '200':
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       '500':
+ *         description: Failure creating the cart
+ *      
+ * /userSignUp:
+ *   post:
+ *     summary: Login User
+ *     description: Login user having Username ,password and Role
+ *     tags: [User]
  *     requestBody:
  *       required: true
  *       content:
@@ -75,10 +104,9 @@ const UserController = require('../controllers/userController');
  *         description: Failure creating the cart
  *      
  */
-
-router.get('/users', UserController.getUsers);
 router.post('/userLogin',UserController.loginUser);
-router.get('/userSignup', UserController.createUser);
+router.post('/userSignup', UserController.createUser);
+router.get('/users', Utils.authenticateJWT, authMiddleware.authenticateUser,UserController.getUsers);
 
 // Define more routes as needed.
 

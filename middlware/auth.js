@@ -1,6 +1,5 @@
 
 exports.authenticateUser = (req, res, next) => {
-    console.log(req.session);
     // Check if the user is authenticated (e.g., by checking if a user session exists).
     if (req.isAuthenticated()) {
         return next(); // User is authenticated, proceed to the next middleware.

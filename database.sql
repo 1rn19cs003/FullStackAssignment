@@ -111,3 +111,82 @@ CREATE TABLE order_history (
     CONSTRAINT fk_oh_order FOREIGN KEY (order_id) REFERENCES cust_order (order_id),
     CONSTRAINT fk_oh_status FOREIGN KEY (status_id) REFERENCES order_status (status_id)
 );
+
+
+
+-- ===========================================================================================
+-- Create the Role enumeration type
+CREATE TYPE Role AS ENUM ('admin', 'customer');
+
+-- Create the user table
+CREATE TABLE "user" (
+    userId UUID PRIMARY KEY,
+    username VARCHAR(255),
+    password VARCHAR(255),
+    role Role
+);
+
+-- Create the Authors table
+CREATE TABLE "Authors" (
+    AuthorID UUID PRIMARY KEY,
+    Name VARCHAR(255)
+);
+
+-- Create the Books table
+CREATE TABLE "Books" (
+    bookId UUID PRIMARY KEY,
+    title VARCHAR(255),
+    isbn VARCHAR,
+    price VARCHAR,
+    QuantityInStock INTEGER
+);
+
+-- Create the customer table
+CREATE TABLE "customer" (
+    customerId UUID PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR
+);
+
+-- Create the Orders table
+CREATE TABLE "Orders" (
+    OrderID UUID PRIMARY KEY,
+    CustomerID UUID,
+    OrderDate TIMESTAMP,
+    TotalAmount DECIMAL(10, 2)
+);
+
+-- Create the OrderItems table
+CREATE TABLE "OrderItems" (
+    orderItemId UUID PRIMARY KEY,
+    OrderID UUID,
+    bookId UUID,
+    quantity INTEGER
+);
+
+-- Create the autherBooks table
+CREATE TABLE "autherBooks" (
+    AuthorID UUID,
+    bookId UUID,
+    CONSTRAINT "autherBooks_pkey" PRIMARY KEY (AuthorID, bookId)
+);
+
+-- Create unique index for autherBooks
+CREATE UNIQUE INDEX "autherBooks_AuthorID_bookId_idx" ON "autherBooks" (AuthorID, bookId);
+
+-- Add foreign key constraints
+ALTER TABLE "Orders"
+    ADD CONSTRAINT "FK_Orders_CustomerID" FOREIGN KEY (CustomerID) REFERENCES "customer"(customerId);
+
+ALTER TABLE "OrderItems"
+    ADD CONSTRAINT "FK_OrderItems_OrderID" FOREIGN KEY (OrderID) REFERENCES "Orders"(OrderID);
+
+ALTER TABLE "OrderItems"
+    ADD CONSTRAINT "FK_OrderItems_bookId" FOREIGN KEY (bookId) REFERENCES "Books"(bookId);
+
+ALTER TABLE "autherBooks"
+    ADD CONSTRAINT "FK_autherBooks_AuthorID" FOREIGN KEY (AuthorID) REFERENCES "Authors"(AuthorID);
+
+ALTER TABLE "autherBooks"
+    ADD CONSTRAINT "FK_autherBooks_bookId" FOREIGN KEY (bookId) REFERENCES "Books"(bookId);
