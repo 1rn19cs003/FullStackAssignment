@@ -1,4 +1,5 @@
-const express = require("express");
+// const express = require("express");
+const express = require('express');
 const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
@@ -37,12 +38,6 @@ const options = {
                 email: "support@example.com",
             },
         },
-        servers: [
-            {
-                url: "https://nodejs-swagger-api.vercel.app/",
-                description: "My API Documentation",
-            },
-        ],
     },
     // This is to call all the file
     apis: ['./routes/*.js'],
