@@ -8,7 +8,7 @@ const swaggerUi = require('swagger-ui-express');
 
 const specs = require('./config/swaggerConfig.js');
 const app = express();
-
+const swaggerRouter = require('./config/swagger.config.const');
 
 
 const userRoutes = require('./routes/userRoutes');
@@ -40,7 +40,7 @@ const corsOptions = {
 };
 
 const CSS_URL =
-"https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 
 
 // Middleware and route handling
@@ -91,7 +91,8 @@ app.use(cookieParser());
 // };
 
 // const specs = swaggerJsDoc(options);
-app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(specs, { customCssUrl: CSS_URL }));
+// app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(specs, { customCssUrl: CSS_URL }));
+app.use('/api-docs/', swaggerRouter);
 app.use('/', userRoutes);
 app.use('/books/', Utils.authenticateJWT, authMiddleware.authenticateUser, bookRoutes);
 app.use('/authors/', Utils.authenticateJWT, authMiddleware.authenticateUser, authorRoutes);
