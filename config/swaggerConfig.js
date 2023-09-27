@@ -30,7 +30,7 @@ const options = {
 };
 
 // Generate the Swagger specification using the defined options.
-const swaggerSpec = swaggerJsdoc(options);
+const specs = swaggerJsdoc(options);
 
 // Export the Swagger specification for use in the application.
-module.exports = swaggerSpec;
+module.exports = specs;

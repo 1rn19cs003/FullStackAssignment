@@ -7,7 +7,7 @@ const logRequest = require('./middlware/request-logger');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 
-// const swaggerSpec = require('./config/swaggerConfig.js');
+const specs = require('./config/swaggerConfig.js');
 const app = express();
 
 
@@ -72,27 +72,27 @@ app.use(passport.session());
 app.use(cookieParser());
 
 // Serve the Swagger documentation
-const options = {
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "Library API",
-            version: "1.0.0",
-            description: "A simple Express Library API",
-            termsOfService: "http://example.com/terms/",
-            contact: {
-                name: "API Support",
-                url: "http://www.exmaple.com/support",
-                email: "abhigrmr@gmail.com",
-            },
-        },
-    },
-    // This is to call all the file
-    apis: ['./routes/*.js'],
-};
+// const options = {
+//     definition: {
+//         openapi: "3.0.0",
+//         info: {
+//             title: "Library API",
+//             version: "1.0.0",
+//             description: "A simple Express Library API",
+//             termsOfService: "http://example.com/terms/",
+//             contact: {
+//                 name: "API Support",
+//                 url: "http://www.exmaple.com/support",
+//                 email: "abhigrmr@gmail.com",
+//             },
+//         },
+//     },
+//     // This is to call all the file
+//     apis: ['./routes/*.js'],
+// };
 
-const specs = swaggerJsDoc(options);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { customCssUrl: CSS_URL }));
+// const specs = swaggerJsDoc(options);
+app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(specs, { customCssUrl: CSS_URL }));
 app.use('/', userRoutes);
 app.use('/books/', Utils.authenticateJWT, authMiddleware.authenticateUser, bookRoutes);
 app.use('/authors/', Utils.authenticateJWT, authMiddleware.authenticateUser, authorRoutes);
