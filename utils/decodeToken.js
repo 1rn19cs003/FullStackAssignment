@@ -24,11 +24,6 @@ class Utils {
         try {
             // console.log(req.session);
             // console.log(req.rawHeaders[authToken]);
-            console.log("=============11111111==============")
-            console.log(req.host);
-            console.log("=============22222222==============")
-            console.log(req.connection);
-            console.log("=============3333333333==============")
             console.log(req.cookies);
             const token = req.cookies.authToken; // Assuming you store the token in a cookie
             if (!token) {
