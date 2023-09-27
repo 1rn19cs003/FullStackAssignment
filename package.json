@@ -35,8 +35,8 @@
     "node": "18.x"
   },
   "scripts": {
-    "start": "ts-node-dev --respawn --pretty --transpile-only --exit-child --watch src server.ts",
-    "build": "ts-node-dev --respawn --pretty --transpile-only --exit-child --watch src server.ts",
+    "start": "nodemon app.js",
+    "build": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
