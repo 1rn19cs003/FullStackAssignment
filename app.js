@@ -5,7 +5,6 @@ const logger = require('./logger');
 const logRequest = require('./middlware/request-logger');
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerJsDoc = require('swagger-jsdoc');
 
 const specs = require('./config/swaggerConfig.js');
 const app = express();
