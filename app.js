@@ -4,7 +4,9 @@ const session = require('cookie-session');
 
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./config/swaggerConfig.js');
+const swaggerJsDoc = require('swagger-jsdoc');
+
+// const swaggerSpec = require('./config/swaggerConfig.js');
 const app = express();
 
 
@@ -54,7 +56,33 @@ app.use(passport.session());
 app.use(cookieParser());
 
 // Serve the Swagger documentation
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { customCssUrl:CSS_URL}));
+const options = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "Library API",
+            version: "1.0.0",
+            description: "A simple Express Library API",
+            termsOfService: "http://example.com/terms/",
+            contact: {
+                name: "API Support",
+                url: "http://www.exmaple.com/support",
+                email: "abhigrmr@gmail.com",
+            },
+        },
+        servers: [
+            {
+                url: "https://full-stack-assignment-gamma.vercel.app/",
+                description: "My API Documentation",
+            },
+        ],
+    },
+    // This is to call all the file
+    apis: ['./routes/*.js'],
+};
+
+const specs = swaggerJsDoc(options);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { customCssUrl:CSS_URL}));
 app.use('/', userRoutes);
 app.use('/books/', Utils.authenticateJWT, authMiddleware.authenticateUser, bookRoutes);
 app.use('/authors/', Utils.authenticateJWT, authMiddleware.authenticateUser,authorRoutes);
