@@ -136,12 +136,10 @@ const authMiddleware = require('../middlware/auth');
  */
 
 router.get("/", BookController.getAllBooks);
-router.post("/book", BookController.createBook);
-router.put("/:bookId", BookController.updateBook);
-router.delete("/:bookId", BookController.deleteBook);
-router.get("/:bookId", BookController.getByBookId);
-// router.get('/users', Utils.authenticateJWT, authMiddleware.authenticateUser, UserController.getUsers);
+router.post("/book", authMiddleware.isAdmin, BookController.createBook);
+router.put("/:bookId", authMiddleware.isAdmin, BookController.updateBook);
+router.delete("/:bookId", authMiddleware.isAdmin, BookController.deleteBook);
+router.get("/:bookId", authMiddleware.isAdmin, BookController.getByBookId);
 
-// Define more routes as needed.
 
 module.exports = router;

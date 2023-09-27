@@ -1,5 +1,6 @@
-
-exports.authenticateUser = (req, res, next) => {
+const Utils = require("../utils/decodeToken");
+const secretKey = process.env.JWT_SECRET_KEY;
+exports.authenticateUser = async (req, res, next) => {
     // Check if the user is authenticated (e.g., by checking if a user session exists).
     if (req.isAuthenticated()) {
         return next(); // User is authenticated, proceed to the next middleware.
@@ -8,20 +9,23 @@ exports.authenticateUser = (req, res, next) => {
 };
 
 // Authorization middleware
-exports.authorizeUser = (req, res, next) => {
+exports.authorizeUser = async (req, res, next) => {
+    const token = req.cookies.authToken;
+    const userInformation = await Utils.decodeToken(token, secretKey);
     // Check if the authenticated user has the necessary permissions (e.g., based on user roles).
-    if (req.user && req.user.role === 'user') {
+    if (userInformation && userInformation.role === 'customer') {
         return next(); // User has the necessary permissions, proceed to the next middleware.
     }
     res.status(403).json({ message: 'Unauthorized' });
 };
 
 // Admin access control middleware
-exports.isAdmin = (req, res, next) => {
+exports.isAdmin = async (req, res, next) => {
+    const token = req.cookies.authToken;
+    const userInformation = await Utils.decodeToken(token, secretKey);
     // Check if the authenticated user is an admin.
-    if (req.user && req.user.role === 'admin') {
-        
+    if (userInformation && userInformation.role === 'admin') {
         return next(); // User is an admin, proceed to the next middleware.
     }
-    res.status(403).json({ message: 'Admin access required',request:req });
+    res.status(403).json({ message: 'Admin access required' });
 };

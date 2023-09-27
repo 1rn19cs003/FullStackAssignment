@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const AuthorController = require('../controllers/authorController');
-const Utils = require('../utils/decodeToken');
 const authMiddleware = require('../middlware/auth');
 
 /**
@@ -127,12 +126,10 @@ const authMiddleware = require('../middlware/auth');
  */
 
 router.get("/", AuthorController.getAllAuthor);
-router.post("/author", AuthorController.createAuthor);
-router.put("/:authorId", AuthorController.updateAuthor);
-router.delete("/:authorId", AuthorController.deleteAuthor);
-router.get("/:authorId", AuthorController.getByAuthorId);
-// router.get('/users', Utils.authenticateJWT, authMiddleware.authenticateUser, UserController.getUsers);
+router.post("/author", authMiddleware.isAdmin, AuthorController.createAuthor);
+router.put("/:authorId", authMiddleware.isAdmin, AuthorController.updateAuthor);
+router.delete("/:authorId", authMiddleware.isAdmin, AuthorController.deleteAuthor);
+router.get("/:authorId", authMiddleware.isAdmin, AuthorController.getByAuthorId);
 
-// Define more routes as needed.
 
 module.exports = router;

@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/api-docs/index.html",
+            "dest": "app.js",
             "methods": [
                 "GET",
                 "POST",

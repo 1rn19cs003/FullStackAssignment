@@ -1,7 +1,8 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('cookie-session');
-
+const logger = require('./logger');
+const logRequest = require('./middlware/request-logger');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
@@ -12,8 +13,8 @@ const app = express();
 
 
 const userRoutes = require('./routes/userRoutes');
-const bookRoutes=require('./routes/bookRoutes.js');
-const authorRoutes=require('./routes/authorRoutes.js');
+const bookRoutes = require('./routes/bookRoutes.js');
+const authorRoutes = require('./routes/authorRoutes.js');
 const customerRoutes = require('./routes/customerRoutes.js');
 const orderRoutes = require('./routes/orderRoutes.js');
 const orderitemRoutes = require('./routes/orderitemRoutes.js');
@@ -21,24 +22,38 @@ const authorbookRoutes = require('./routes/authorbookRoutes.js');
 const passport = require('passport');
 const Utils = require('./utils/decodeToken');
 const authMiddleware = require('./middlware/auth');
-
+const cors = require('cors');
 
 const port = process.env.PORT || 3000;
 const host = process.env.HOST || 'localhost';
 const secretKey = process.env.JWT_SECRET_KEY;
 
+
+const allowedOrigins = ['https://full-stack-assignment-git-master-1rn19cs003.vercel.app', 'http://localhost:3000']; // Add your allowed origins
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+};
+
 const CSS_URL =
-    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+"https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 
 
 // Middleware and route handling
 app.set('trust proxy', 1);
+app.use(cors(corsOptions));
+app.use(logRequest);
 app.use(express.json());
-app.use(session({ 
-    cookie: { 
-        secure: true ,
+app.use(session({
+    cookie: {
+        secure: true,
         maxAge: 60000
-    } ,
+    },
     secret: secretKey,
     resave: true,
     saveUninitialized: true,
@@ -46,6 +61,7 @@ app.use(session({
 
 
 app.use(function (req, res, next) {
+    logger.info('Request received at /');
     if (!req.session) {
         return next(new Error('Error')) //handle error
     }
@@ -70,26 +86,20 @@ const options = {
                 email: "abhigrmr@gmail.com",
             },
         },
-        servers: [
-            {
-                url: "https://full-stack-assignment-gamma.vercel.app/",
-                description: "My API Documentation",
-            },
-        ],
     },
     // This is to call all the file
     apis: ['./routes/*.js'],
 };
 
 const specs = swaggerJsDoc(options);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { customCssUrl:CSS_URL}));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { customCssUrl: CSS_URL }));
 app.use('/', userRoutes);
 app.use('/books/', Utils.authenticateJWT, authMiddleware.authenticateUser, bookRoutes);
-app.use('/authors/', Utils.authenticateJWT, authMiddleware.authenticateUser,authorRoutes);
-app.use('/customers/', Utils.authenticateJWT, authMiddleware.authenticateUser,customerRoutes);
-app.use('/orders/', Utils.authenticateJWT, authMiddleware.authenticateUser,orderRoutes);
-app.use('/orderitems/', Utils.authenticateJWT, authMiddleware.authenticateUser,orderitemRoutes);
-app.use('/authorbooks/', Utils.authenticateJWT, authMiddleware.authenticateUser,authorbookRoutes);
+app.use('/authors/', Utils.authenticateJWT, authMiddleware.authenticateUser, authorRoutes);
+app.use('/customers/', Utils.authenticateJWT, authMiddleware.authenticateUser, authMiddleware.authorizeUser, customerRoutes);
+app.use('/orders/', Utils.authenticateJWT, authMiddleware.authenticateUser, authMiddleware.authorizeUser, orderRoutes);
+app.use('/orderitems/', Utils.authenticateJWT, authMiddleware.authenticateUser, authMiddleware.authorizeUser, orderitemRoutes);
+app.use('/authorbooks/', Utils.authenticateJWT, authMiddleware.authenticateUser, authMiddleware.authorizeUser, authorbookRoutes);
 
 
 
