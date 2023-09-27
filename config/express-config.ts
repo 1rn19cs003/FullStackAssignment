@@ -41,7 +41,7 @@
 // export default ExpressConfig;
 
 import express, { Application } from "express";
-import swaggerRouter from "./swagger.config.const.js";
+import swaggerRouter from "../config/swagger.config.const.js";
 import helmet from "helmet";
 import cors from "cors";
 import dotenv from "dotenv";
