@@ -35,18 +35,18 @@ const logger = winston.createLogger({
         new winston.transports.Console({
             format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
         }),
-        new DailyRotateFile({
-            level: 'info',
-            filename: 'logs/application-%DATE%.log',
-            datePattern: 'YYYY-MM-DD',
-            zippedArchive: true,
-            maxSize: '20m', // Maximum file size before rotation
-            maxFiles: '14d', // Number of days to keep log files
-        }),
-        new winston.transports.File({
-            filename: 'logs/console.log',
-            level: 'info', // Set the log level for this transport
-        }),
+    //     new DailyRotateFile({
+    //         level: 'info',
+    //         filename: 'logs/application-%DATE%.log',
+    //         datePattern: 'YYYY-MM-DD',
+    //         zippedArchive: true,
+    //         maxSize: '20m', // Maximum file size before rotation
+    //         maxFiles: '14d', // Number of days to keep log files
+    //     }),
+    //     new winston.transports.File({
+    //         filename: 'logs/console.log',
+    //         level: 'info', // Set the log level for this transport
+    //     }),
     ],
     levels: logLevels,
 });
