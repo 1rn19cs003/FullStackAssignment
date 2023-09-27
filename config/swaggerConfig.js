@@ -16,7 +16,7 @@ const options = {
         },
         servers: [
             {
-                url: "https://nodejs-swagger-api.vercel.app/",
+                url: "https://full-stack-assignment-gamma.vercel.app/",
                 description: "My API Documentation",
             },
         ],
