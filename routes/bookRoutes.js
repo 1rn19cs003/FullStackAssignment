@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const bookRouter = express.Router();
 const BookController = require('../controllers/bookController');
 const Utils = require('../utils/decodeToken');
 const authMiddleware = require('../middlware/auth');
@@ -135,11 +135,11 @@ const authMiddleware = require('../middlware/auth');
  *         description: Failure deleting the Book
  */
 
-router.get("/", BookController.getAllBooks);
-router.post("/book", authMiddleware.isAdmin, BookController.createBook);
-router.put("/:bookId", authMiddleware.isAdmin, BookController.updateBook);
-router.delete("/:bookId", authMiddleware.isAdmin, BookController.deleteBook);
-router.get("/:bookId", authMiddleware.isAdmin, BookController.getByBookId);
+bookRouter.get("/", BookController.getAllBooks);
+bookRouter.post("/book", authMiddleware.isAdmin, BookController.createBook);
+bookRouter.put("/:bookId", authMiddleware.isAdmin, BookController.updateBook);
+bookRouter.delete("/:bookId", authMiddleware.isAdmin, BookController.deleteBook);
+bookRouter.get("/:bookId", authMiddleware.isAdmin, BookController.getByBookId);
 
 
-module.exports = router;
+module.exports = bookRouter;

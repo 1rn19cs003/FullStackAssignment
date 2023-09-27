@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const authorRouter = express.Router();
 const AuthorController = require('../controllers/authorController');
 const authMiddleware = require('../middlware/auth');
 
@@ -125,11 +125,11 @@ const authMiddleware = require('../middlware/auth');
  *         description: Failure deleting the Author
  */
 
-router.get("/", AuthorController.getAllAuthor);
-router.post("/author", authMiddleware.isAdmin, AuthorController.createAuthor);
-router.put("/:authorId", authMiddleware.isAdmin, AuthorController.updateAuthor);
-router.delete("/:authorId", authMiddleware.isAdmin, AuthorController.deleteAuthor);
-router.get("/:authorId", authMiddleware.isAdmin, AuthorController.getByAuthorId);
+authorRouter.get("/", AuthorController.getAllAuthor);
+authorRouter.post("/author", authMiddleware.isAdmin, AuthorController.createAuthor);
+authorRouter.put("/:authorId", authMiddleware.isAdmin, AuthorController.updateAuthor);
+authorRouter.delete("/:authorId", authMiddleware.isAdmin, AuthorController.deleteAuthor);
+authorRouter.get("/:authorId", authMiddleware.isAdmin, AuthorController.getByAuthorId);
 
 
-module.exports = router;
+module.exports = authorRouter;

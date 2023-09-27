@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const orderitemRouter = express.Router();
 const OrderItemController = require('../controllers/orderItemController');
 const Utils = require('../utils/decodeToken');
 const authMiddleware = require('../middlware/auth');
@@ -138,11 +138,11 @@ const authMiddleware = require('../middlware/auth');
  *         description: Failure deleting the OrderItem
  */
 
-router.get("/", OrderItemController.getAllOrderItems);
-router.post("/orderItem", OrderItemController.createOrderItems);
-router.put("/:orderItemId", OrderItemController.updateOrderItem);
-router.delete("/:orderItemId", OrderItemController.deleteOrderItems);
-router.get("/:orderItemId", OrderItemController.getByOrderItemId);
+orderitemRouter.get("/", OrderItemController.getAllOrderItems);
+orderitemRouter.post("/orderItem", OrderItemController.createOrderItems);
+orderitemRouter.put("/:orderItemId", OrderItemController.updateOrderItem);
+orderitemRouter.delete("/:orderItemId", OrderItemController.deleteOrderItems);
+orderitemRouter.get("/:orderItemId", OrderItemController.getByOrderItemId);
 
 
-module.exports = router;
+module.exports = orderitemRouter;

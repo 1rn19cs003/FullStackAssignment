@@ -1,11 +1,9 @@
-// const apis = process.env.NODE_ENV === 'dev' ? `./routes/**.ts` : `${__dirname}/routes/**.js`;
-
-
 
 const express = require("express");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
-
+const CSS_URL =
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 const router = express.Router();
 
 const SWAGGER_OPTIONS = {
@@ -33,8 +31,8 @@ const SWAGGER_OPTIONS = {
 const specs = swaggerJsdoc(SWAGGER_OPTIONS);
 
 router.use("/", swaggerUi.serve);
-router.get("/", swaggerUi.setup(specs));
+router.get("/", swaggerUi.setup(specs, { customCssUrl: CSS_URL }));
 
 
 
-module.exports =router;
+module.exports = router;

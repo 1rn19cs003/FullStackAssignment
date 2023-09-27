@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const userRouter = express.Router();
 const UserController = require('../controllers/userController');
 const Utils = require('../utils/decodeToken');
 const authMiddleware = require('../middlware/auth'); 
@@ -120,12 +120,12 @@ const authMiddleware = require('../middlware/auth');
  *         description: Failure creating the cart
  *      
  */
-router.post('/userLogin',UserController.loginUser);
-router.post('/userSignup', UserController.createUser);
-router.get('/',UserController.test);
-router.get('/logout', UserController.logoutUser);
-router.get('/users', Utils.authenticateJWT, authMiddleware.authenticateUser,UserController.getUsers);
+userRouter.post('/userLogin',UserController.loginUser);
+userRouter.post('/userSignup', UserController.createUser);
+userRouter.get('/',UserController.test);
+userRouter.get('/logout', UserController.logoutUser);
+userRouter.get('/users', Utils.authenticateJWT, authMiddleware.authenticateUser,UserController.getUsers);
 
 
 
-module.exports = router;
+module.exports = userRouter;

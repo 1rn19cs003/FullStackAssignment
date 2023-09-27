@@ -10,6 +10,7 @@ exports.authenticateUser = async (req, res, next) => {
 
 // Authorization middleware
 exports.authorizeUser = async (req, res, next) => {
+    // console.log(req.cookies);
     const token = req.cookies.authToken;
     const userInformation = await Utils.decodeToken(token, secretKey);
     // Check if the authenticated user has the necessary permissions (e.g., based on user roles).

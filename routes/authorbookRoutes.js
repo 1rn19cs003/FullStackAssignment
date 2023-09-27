@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const authorbookRouter = express.Router();
 const autherBooksController = require('../controllers/autherBookController');
 const Utils = require('../utils/decodeToken');
 const authMiddleware = require('../middlware/auth');
@@ -132,11 +132,11 @@ const authMiddleware = require('../middlware/auth');
  *         description: Failure deleting the autherBooks
  */
 
-router.get("/", autherBooksController.getAllBookAuthor);
-router.post("/autherBookId", autherBooksController.createBookAuthor);
-router.put("/:autherBookId", autherBooksController.updateBookAuthor);
-router.delete("/:autherBookId", autherBooksController.deleteBookAuthor);
-router.get("/:autherBookId", autherBooksController.getByBookAuthorId);
+authorbookRouter.get("/", autherBooksController.getAllBookAuthor);
+authorbookRouter.post("/autherBookId", autherBooksController.createBookAuthor);
+authorbookRouter.put("/:autherBookId", autherBooksController.updateBookAuthor);
+authorbookRouter.delete("/:autherBookId", autherBooksController.deleteBookAuthor);
+authorbookRouter.get("/:autherBookId", autherBooksController.getByBookAuthorId);
 
 
-module.exports = router;
+module.exports = authorbookRouter;

@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const orderRouter = express.Router();
 const OrderController = require('../controllers/orderController');
 const Utils = require('../utils/decodeToken');
 const authMiddleware = require('../middlware/auth');
@@ -135,12 +135,12 @@ const authMiddleware = require('../middlware/auth');
  *         description: Failure deleting the Order
  */
 
-router.get("/", OrderController.getAllOrders);
-router.post("/order", OrderController.createOrder);
-router.put("/:OrderId", OrderController.updateOrder);
-router.delete("/:OrderId", OrderController.deleteOrder);
-router.get("/:OrderId", OrderController.getByOrderId);
+orderRouter.get("/", OrderController.getAllOrders);
+orderRouter.post("/order", OrderController.createOrder);
+orderRouter.put("/:OrderId", OrderController.updateOrder);
+orderRouter.delete("/:OrderId", OrderController.deleteOrder);
+orderRouter.get("/:OrderId", OrderController.getByOrderId);
 
 // Define more routes as needed.
 
-module.exports = router;
+module.exports = orderRouter;

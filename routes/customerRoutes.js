@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const customerRouter = express.Router();
 const CustomerController = require('../controllers/customerController');
 const Utils = require('../utils/decodeToken');
 const authMiddleware = require('../middlware/auth');
@@ -132,12 +132,12 @@ const authMiddleware = require('../middlware/auth');
  *         description: Failure deleting the Customer
  */
 
-router.get("/", CustomerController.getAllCustomer);
-router.post("/customer", CustomerController.createCustomer);
-router.put("/:customerId", CustomerController.updateCustomer);
-router.delete("/:customerId", CustomerController.deleteCustomer);
-router.get("/:customerId", CustomerController.getByCustomerId);
+customerRouter.get("/", CustomerController.getAllCustomer);
+customerRouter.post("/customer", CustomerController.createCustomer);
+customerRouter.put("/:customerId", CustomerController.updateCustomer);
+customerRouter.delete("/:customerId", CustomerController.deleteCustomer);
+customerRouter.get("/:customerId", CustomerController.getByCustomerId);
 
 // Define more routes as needed.
 
-module.exports = router;
+module.exports = customerRouter;
