@@ -31,13 +31,13 @@
   "name": "fullstackassignment",
   "description": "",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "engines": {
     "node": "18.x"
   },
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "build": "npm run clean && npm run compile",
     "compile": "babel src --out-dir dist",
     "clean": "rm -rf dist",
