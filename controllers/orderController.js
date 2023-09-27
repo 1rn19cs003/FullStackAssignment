@@ -22,7 +22,11 @@ exports.createOrder = async (req, res) => {
         console.log(checkCustomer);
         if (checkCustomer) {
             const orders = await Orders.create(k.CustomerID, k.OrderDate, k.quantity);
-            res.status(200).send(orders);
+            if (orders) {
+                res.status(200).send(orders);
+            } else {
+                res.status(201).send({ message: "Order Not created Due to some internal error" });
+            }
         } else {
             res.status(201).send({ message: "Customer Not Found" });
         }
@@ -36,7 +40,11 @@ exports.getByOrderId = async (req, res) => {
     try {
         let OrderId = req.params.OrderId;
         const orders = await Orders.findOne(OrderId);
-        res.status(200).send(orders);
+        if (orders) {
+            res.status(200).send(orders);
+        } else {
+            res.status(201).send({ message: "Order Id is invalid" });
+        }
     } catch (error) {
         console.log('error', error)
         res.status(500).send({ message: 'server error' });
@@ -48,7 +56,11 @@ exports.deleteOrder = async (req, res) => {
     try {
         let OrderId = req.params.OrderId;
         const orders = await Orders.delete(OrderId);
-        res.status(200).send(orders);
+        if (orders) {
+            res.status(200).send(orders);
+        } else {
+            res.status(201).send({ message: "Order Id is invalid" });
+        }
     } catch (err) {
         console.log('error', err);
         res.status(500).send({ message: 'server error' });
@@ -61,7 +73,11 @@ exports.updateOrder = async (req, res) => {
         let OrderId = req.params.OrderId;
         let k = req.body;
         const orders = await Orders.update(OrderId, k.CustomerID, k.OrderDate, k.quantity);
-        res.status(200).send(orders);
+        if (orders) {
+            res.status(200).send(orders);
+        } else {
+            res.status(201).send({ message: "Order Id is invalid" });
+        }
     } catch (err) {
         console.log('error', err);
         res.status(500).send({ message: 'server error' });

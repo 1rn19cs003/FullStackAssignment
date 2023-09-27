@@ -1,44 +1,36 @@
+// Import the 'swagger-jsdoc' library to generate Swagger documentation.
 const swaggerJsdoc = require('swagger-jsdoc');
 
+// Define Swagger options for generating API documentation.
 const options = {
+    // Define the API information.
     definition: {
-        openapi: "3.0.0",
+        openapi: "3.0.0", // Specify the OpenAPI version.
         info: {
-            title: "Library API",
-            version: "1.0.0",
-            description: "A simple Express Library API",
-            termsOfService: "http://example.com/terms/",
+            title: "Library API", // API title.
+            version: "1.0.0", // API version.
+            description: "A simple Express Library API", // API description.
+            termsOfService: "http://example.com/terms/", // Terms of service URL.
             contact: {
-                name: "API Support",
-                url: "http://www.exmaple.com/support",
-                email: "abhigrmr@gmail.com",
+                name: "Abhishek Jaiswal", // Contact name.
+                url: "https://www.linkedin.com/in/abhishekjaiswal1308/", // Contact URL.
+                email: "abhigrmr@gmail.com", // Contact email.
             },
         },
+        // Define the server where the API documentation is hosted.
         servers: [
             {
-                url: "https://full-stack-assignment-gamma.vercel.app/",
-                description: "My API Documentation",
+                url: "https://full-stack-assignment-gamma.vercel.app/", // Base URL of the API.
+                description: "My API Documentation", // Description of the server.
             },
         ],
     },
-    // This is to call all the file
-    apis: ['./routes/*.js'],
+    // Specify the files to scan for API endpoints.
+    apis: ['./routes/*.js'], // Scan all JavaScript files in the 'routes' directory.
 };
-// const options = {
-//     definition: {
-//         openapi: '3.0.0',
-//         info: {
-//             title: 'Your API Documentation',
-//             version: '1.0.0',
-//             description: 'API documentation for your Node.js application',
-//         },
-//     },
-//     // List of files to be processed. You can include all your API routes here.
-//     apis: ['./routes/*.js'],
-// };
 
+// Generate the Swagger specification using the defined options.
 const swaggerSpec = swaggerJsdoc(options);
 
-// console.log(swaggerSpec);
-
+// Export the Swagger specification for use in the application.
 module.exports = swaggerSpec;

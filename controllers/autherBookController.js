@@ -1,10 +1,12 @@
-const jwt = require('jsonwebtoken');
-const secretKey = process.env.JWT_SECRET_KEY;
-const Utils = require('../utils/decodeToken');
-const BookAuthor = require('../models/bookauthor');
-const Author = require('../models/author');
-const Books = require('../models/books');
+// Import necessary modules and models
+const jwt = require('jsonwebtoken'); // Module for JSON Web Tokens
+const secretKey = process.env.JWT_SECRET_KEY; // Secret key for JWT
+const Utils = require('../utils/decodeToken'); // Utility for decoding tokens
+const BookAuthor = require('../models/bookauthor'); // Model for BookAuthor
+const Author = require('../models/author'); // Model for Author
+const Books = require('../models/books'); // Model for Books
 
+// Function to get all BookAuthor records
 exports.getAllBookAuthor = async (req, res) => {
     try {
         const author = await BookAuthor.findAll();
@@ -15,15 +17,20 @@ exports.getAllBookAuthor = async (req, res) => {
     }
 };
 
-
+// Function to create a new BookAuthor record
 exports.createBookAuthor = async (req, res) => {
     try {
         let k = req.body;
+        //checking valid Auther and book Ids
         const checkAuthor = await Author.findOne(k.authorId);
         const checkBook = await Books.findOne(k.bookId);
         if (checkAuthor && checkBook) {
             const author = await BookAuthor.create(k.authorId, k.bookId);
-            res.status(200).send(author);
+            if(author){
+                res.status(200).send(author);
+            }else{
+                res.status(201).send({ message: "Book Author Not created Due to some internal error" });
+            }
         } else {
             res.status(201).send({ message: "Author or Book Id is invalid" });
         }
@@ -31,40 +38,52 @@ exports.createBookAuthor = async (req, res) => {
         console.log('error', error)
         res.status(500).send({ message: 'server error' });
     }
-}
+};
 
+// Function to get a BookAuthor record by its ID
 exports.getByBookAuthorId = async (req, res) => {
     try {
         let authorId = req.params.authorId;
         const author = await BookAuthor.findOne(authorId);
-        res.status(200).send(author);
+        if (author) {
+            res.status(200).send(author);
+        } else {
+            res.status(201).send({ message: "Book Author Id is invalid" });
+        }
     } catch (error) {
         console.log('error', error)
         res.status(500).send({ message: 'server error' });
     }
-}
+};
 
-
+// Function to delete a BookAuthor record by its ID
 exports.deleteBookAuthor = async (req, res) => {
     try {
         let authorId = req.params.authorId;
         const author = await BookAuthor.delete(authorId);
-        res.status(200).send(author);
+        if (author) {
+            res.status(200).send(author);
+        } else {
+            res.status(201).send({ message: "Book Author Id is invalid" });
+        }
     } catch (err) {
         console.log('error', err);
         res.status(500).send({ message: 'server error' });
     }
-
-}
-
+};
+// Function to update a BookAuthor record by its ID
 exports.updateBookAuthor = async (req, res) => {
     try {
         let authorId = req.params.authorId;
         let k = req.body;
         const author = await BookAuthor.update(authorId, k.AuthorId, k.bookId);
-        res.status(200).send(author);
+        if(author){
+            res.status(200).send(author);
+        }else{
+            res.status(201).send({ message: "Book Author Id is invalid" });
+        }
     } catch (err) {
         console.log('error', err);
         res.status(500).send({ message: 'server error' });
     }
-}
+};

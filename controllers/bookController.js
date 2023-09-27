@@ -22,7 +22,11 @@ exports.createBook = async (req, res) => {
     try {
         let k = req.body;
         const books = await Books.create(k.title, k.isbn, k.price, k.QuantityInStock);
-        res.status(200).send(books);
+        if (books) {
+            res.status(200).send(books);
+        } else {
+            res.status(201).send({ message: "Book Not Created due to some internal error" });
+        }
     } catch (error) {
         console.log('error', error)
         res.status(500).send({ message: 'server error' });
@@ -33,7 +37,11 @@ exports.getByBookId = async (req, res) => {
     try {
         let bookId = req.params.bookId;
         const books = await Books.findOne(bookId);
-        res.status(200).send(books);
+        if (books) {
+            res.status(200).send(books);
+        } else {
+            res.status(201).send({ message: "Book Not Found" });
+        }
     } catch (error) {
         console.log('error', error)
         res.status(500).send({ message: 'server error' });
@@ -45,7 +53,11 @@ exports.deleteBook = async (req, res) => {
     try {
         let bookId = req.params.bookId;
         const books = await Books.delete(bookId);
-        res.status(200).send(books);
+        if (books) {
+            res.status(200).send(books);
+        } else {
+            res.status(201).send({ message: "Book Not Found" });
+        }
     } catch (err) {
         console.log('error', err);
         res.status(500).send({ message: 'server error' });
@@ -53,14 +65,18 @@ exports.deleteBook = async (req, res) => {
 
 }
 
-exports.updateBook=async(req,res)=>{
-    try{
-        let bookId=req.params.bookId;
-        let k=req.body;
-        const books=await Books.update(bookId,k.title,k.isbn,k.price,k.QuantityInStock);
-        res.status(200).send(books);
-    }catch(err){
-        console.log('error',err);
-        res.status(500).send({message:'server error'});
+exports.updateBook = async (req, res) => {
+    try {
+        let bookId = req.params.bookId;
+        let k = req.body;
+        const books = await Books.update(bookId, k.title, k.isbn, k.price, k.QuantityInStock);
+        if (books) {
+            res.status(200).send(books);
+        } else {
+            res.status(201).send({ message: "Book Not Found" });
+        }
+    } catch (err) {
+        console.log('error', err);
+        res.status(500).send({ message: 'server error' });
     }
 }

@@ -13,10 +13,10 @@ exports.authorizeUser = async (req, res, next) => {
     const token = req.cookies.authToken;
     const userInformation = await Utils.decodeToken(token, secretKey);
     // Check if the authenticated user has the necessary permissions (e.g., based on user roles).
-    if (userInformation && userInformation.role === 'customer') {
+    if (userInformation && (userInformation.role === 'customer' || userInformation.role==='admin')) {
         return next(); // User has the necessary permissions, proceed to the next middleware.
     }
-    res.status(403).json({ message: 'Unauthorized' });
+    res.status(403).json({ message: 'Unauthorized'});
 };
 
 // Admin access control middleware

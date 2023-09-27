@@ -20,11 +20,15 @@ exports.createCustomer = async (req, res) => {
         let k = req.body;
         const checkUser = await User.findByUserId(k.customerId);
         if (checkUser) {
-            const checkEmail=await Utils.validateEmail(k.email);
-            if (checkEmail){
+            const checkEmail = await Utils.validateEmail(k.email);
+            if (checkEmail) {
                 const customer = await Customer.create(k.customerId, k.name, k.email, k.phone);
-                res.status(200).send(customer);
-            }else{
+                if (customer) {
+                    res.status(200).send(customer);
+                } else {
+                    res.status(201).send({ message: "Customer Not created Due to some internal error" });
+                }
+            } else {
                 res.status(201).send({ message: "Email is invalid" });
             }
         } else {
@@ -40,7 +44,11 @@ exports.getByCustomerId = async (req, res) => {
     try {
         let customerId = req.params.customerId;
         const customer = await Customer.findOne(customerId);
-        res.status(200).send(customer);
+        if (customer) {
+            res.status(200).send(customer);
+        } else {
+            res.status(201).send({ message: "Customer Id is invalid" });
+        }
     } catch (error) {
         console.log('error', error)
         res.status(500).send({ message: 'server error' });
@@ -52,7 +60,11 @@ exports.deleteCustomer = async (req, res) => {
     try {
         let customerId = req.params.customerId;
         const customer = await Customer.delete(customerId);
-        res.status(200).send(customer);
+        if (customer) {
+            res.status(200).send(customer);
+        } else {
+            res.status(201).send({ message: "Customer Id is invalid" });
+        }
     } catch (err) {
         console.log('error', err);
         res.status(500).send({ message: 'server error' });
@@ -65,7 +77,11 @@ exports.updateCustomer = async (req, res) => {
         let customerId = req.params.customerId;
         let k = req.body;
         const customer = await Customer.update(customerId, k.name, k.email, k.phone);
-        res.status(200).send(customer);
+        if (customer) {
+            res.status(200).send(customer);
+        } else {
+            res.status(201).send({ message: "Customer Id is invalid" });
+        }
     } catch (err) {
         console.log('error', err);
         res.status(500).send({ message: 'server error' });
