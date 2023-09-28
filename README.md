@@ -6,50 +6,50 @@ Assignment what I need to do you can find it here \
 ## Here is the Tree
 
 ```
+┣ 📂config
+┃   ┣ 📜database.js
+┃   ┣ 📜swagger.config.const.js
+┃   ┣ 📜swaggerConfig.js
+┣ 📂controllers
+┃   ┣ 📜autherBookController.js
+┃   ┣ 📜authorController.js
+┃   ┣ 📜bookController.js
+┃   ┣ 📜customerController.js
+┃   ┣ 📜orderController.js
+┃   ┣ 📜orderItemController.js
+┃   ┣ 📜userController.js
+┣ 📂middlware
+┃   ┣ 📜auth.js
+┃   ┣ 📜request-logger.js
+┣ 📂models
+┃   ┣ 📜author.js
+┃   ┣ 📜bookauthor.js
+┃   ┣ 📜books.js
+┃   ┣ 📜customer.js
+┃   ┣ 📜orderItems.js
+┃   ┣ 📜orders.js
+┃   ┣ 📜user.js
+┣ 📂routes
+┃   ┣ 📜authorbookRoutes.js
+┃   ┣ 📜authorRoutes.js
+┃   ┣ 📜bookRoutes.js
+┃   ┣ 📜customerRoutes.js
+┃   ┣ 📜indexRoute.js
+┃   ┣ 📜orderitemRoutes.js
+┃   ┣ 📜orderRoutes.js
+┃   ┣ 📜userRoutes.js
+┣ 📂utils
+┃   ┣ 📜decodeToken.js
 ┣ 📜.gitignore
 ┣ 📜app.js
-┣ 📂config
-┃ ┣ 📜database.js
-┃ ┣ 📜swagger.config.const.js
-┃ ┣ 📜swaggerConfig.js
-┣ 📂controllers
-┃ ┣ 📜autherBookController.js
-┃ ┣ 📜authorController.js
-┃ ┣ 📜bookController.js
-┃ ┣ 📜customerController.js
-┃ ┣ 📜orderController.js
-┃ ┣ 📜orderItemController.js
-┃ ┣ 📜userController.js
 ┣ 📜database.sql
 ┣ 📜index.js
 ┣ 📜logger.js
-┣ 📂middlware
-┃ ┣ 📜auth.js
-┃ ┣ 📜request-logger.js
-┣ 📂models
-┃ ┣ 📜author.js
-┃ ┣ 📜bookauthor.js
-┃ ┣ 📜books.js
-┃ ┣ 📜customer.js
-┃ ┣ 📜orderItems.js
-┃ ┣ 📜orders.js
-┃ ┣ 📜user.js
+┣ 📜vercel.json
 ┣ 📜now.json
 ┣ 📜package-lock.json
 ┣ 📜package.json
 ┣ 📜README.md
-┣ 📂routes
-┃ ┣ 📜authorbookRoutes.js
-┃ ┣ 📜authorRoutes.js
-┃ ┣ 📜bookRoutes.js
-┃ ┣ 📜customerRoutes.js
-┃ ┣ 📜indexRoute.js
-┃ ┣ 📜orderitemRoutes.js
-┃ ┣ 📜orderRoutes.js
-┃ ┣ 📜userRoutes.js
-┣ 📂utils
-┃ ┣ 📜decodeToken.js
-┣ 📜vercel.json
 ```
 # Breif Overview of Project
 
@@ -213,7 +213,7 @@ I acknowledge that this may not be a perfect piece of work, but I did my best wi
 - You only need to login with admin to acess this 
 - inclued all CRUD opeations 
 - to used only read of all files you can login with customer and can cess one api only \
-<img align="right" src="photos/author.png" width="100%"/>&nbsp;
+<img align="right" src="photos/Author.png" width="100%"/>&nbsp;
 &nbsp;
 &nbsp; 
 &nbsp;
