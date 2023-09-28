@@ -26,8 +26,8 @@ const SWAGGER_OPTIONS = {
         },
         servers: [
             {
-                url: "http://localhost:3000/", // Base URL of the API.
-                // url: "http://ec2-34-238-39-43.compute-1.amazonaws.com:3000/",
+                // url: "http://localhost:3000/", // Base URL of the API.
+                url: "http://ec2-34-238-39-43.compute-1.amazonaws.com:3000/",
                 description: "My API Documentation", // Description of the server.
             },
         ],
