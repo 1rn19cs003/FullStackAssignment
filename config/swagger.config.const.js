@@ -2,6 +2,7 @@
 const express = require("express");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
+
 const CSS_URL =
     "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 const router = express.Router();
@@ -23,6 +24,13 @@ const SWAGGER_OPTIONS = {
                 email: "abhigrmr@gmail.com",
             },
         },
+        servers: [
+            {
+                url: "http://localhost:3000/", // Base URL of the API.
+                // url: "http://ec2-34-238-39-43.compute-1.amazonaws.com:3000/",
+                description: "My API Documentation", // Description of the server.
+            },
+        ],
     },
     apis: ["./routes/*.js"],
 };

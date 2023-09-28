@@ -4,9 +4,6 @@ const session = require('cookie-session');
 const logger = require('./logger');
 const logRequest = require('./middlware/request-logger');
 
-const swaggerUi = require('swagger-ui-express');
-
-const specs = require('./config/swaggerConfig.js');
 const app = express();
 const swaggerRouter = require('./config/swagger.config.const');
 
@@ -24,28 +21,30 @@ const authMiddleware = require('./middlware/auth');
 const cors = require('cors');
 
 const port = process.env.PORT || 3000;
-const host = process.env.HOST || 'ec2-34-238-39-43.compute-1.amazonaws.com';
+const host = process.env.HOST ||'localhost' ||'ec2-34-238-39-43.compute-1.amazonaws.com';
 const secretKey = process.env.JWT_SECRET_KEY;
 
 
-const allowedOrigins = ['https://full-stack-assignment-git-master-1rn19cs003.vercel.app', 'http://localhost:3000']; // Add your allowed origins
-const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-};
-
-const CSS_URL =
-    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+const allowedOrigins = ['http://ec2-34-238-39-43.compute-1.amazonaws.com:3000/', 'http://localhost:300']; // Add your allowed origins
+// const corsOptions = {
+//     origin: (origin, callback) => {
+//         if (allowedOrigins.includes(origin) || !origin) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+// };
 
 
 // Middleware and route handling
 app.set('trust proxy', 1);
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors({
+    origin: allowedOrigins, // Replace with your frontend's domain
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Include this if you're using cookies or sessions
+}));
 app.use(logRequest);
 app.use(express.json());
 app.use(session({
@@ -71,28 +70,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
 
-// Serve the Swagger documentation
-// const options = {
-//     definition: {
-//         openapi: "3.0.0",
-//         info: {
-//             title: "Library API",
-//             version: "1.0.0",
-//             description: "A simple Express Library API",
-//             termsOfService: "http://example.com/terms/",
-//             contact: {
-//                 name: "API Support",
-//                 url: "http://www.exmaple.com/support",
-//                 email: "abhigrmr@gmail.com",
-//             },
-//         },
-//     },
-//     // This is to call all the file
-//     apis: ['./routes/*.js'],
-// };
 
-// const specs = swaggerJsDoc(options);
-// app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(specs, { customCssUrl: CSS_URL }));
 app.use('/api-docs/', swaggerRouter);
 app.use('/', userRoutes);
 app.use('/books/', Utils.authenticateJWT, authMiddleware.authenticateUser, bookRoutes);
@@ -102,11 +80,6 @@ app.use('/orders/', Utils.authenticateJWT, authMiddleware.authenticateUser, auth
 app.use('/orderitems/', Utils.authenticateJWT, authMiddleware.authenticateUser, authMiddleware.authorizeUser, orderitemRoutes);
 app.use('/authorbooks/', Utils.authenticateJWT, authMiddleware.authenticateUser, authMiddleware.authorizeUser, authorbookRoutes);
 
-
-
-// app.use('/admin', authMiddleware.authenticateUser, authMiddleware.isAdmin);
-// app.use('/profile', authMiddleware.authenticateUser);
-// app.use('/user', authMiddleware.authenticateUser, authMiddleware.authorizeUser);
 
 
 app.listen(port, () => {

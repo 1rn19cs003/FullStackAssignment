@@ -161,7 +161,7 @@ module.exports = pool;
 You need to specify the `port` name that's it in your `.env` file and then it'll start working
 
 # API Documentation
-The API is documented using [Swagger UI Express](https://full-stack-assignment-gamma.vercel.app/api-docs/#/).
+The API is documented using [Swagger UI Express](http://ec2-34-238-39-43.compute-1.amazonaws.com:3000/api-docs/#/).
 
 
 All the endpoints are given in the swagger UI which was my motive to use the Swagger

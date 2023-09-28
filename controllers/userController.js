@@ -20,6 +20,7 @@ exports.getUsers = async (req, res) => {
 exports.loginUser = async (req, res) => {
     try {
         let k = req.body;
+        console.log(k)
         const users = await User.findOne(k.username, k.password, k.Role)
         if (users) {
             const token = jwt.sign({ Id: users.userid, username: users.username, role: users.role }, secretKey, {
