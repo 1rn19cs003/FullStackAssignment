@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const secretKey = process.env.JWT_SECRET_KEY;
+const secretKey = process.env.JWT_SECRET_KEY || 'abhishek';
 const Utils = require('../utils/decodeToken');
 
 exports.getUsers = async (req, res) => {
@@ -32,7 +32,7 @@ exports.loginUser = async (req, res) => {
             res.status(201).send({ message: "User Not Found" });
         }
     } catch (error) {
-        res.status(500).send({ message: 'server error' });
+        res.status(500).send({ message: 'server error',error :error});
     }
 }
 

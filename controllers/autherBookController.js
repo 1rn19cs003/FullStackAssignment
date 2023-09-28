@@ -1,7 +1,5 @@
 // Import necessary modules and models
 const jwt = require('jsonwebtoken'); // Module for JSON Web Tokens
-const secretKey = process.env.JWT_SECRET_KEY; // Secret key for JWT
-const Utils = require('../utils/decodeToken'); // Utility for decoding tokens
 const BookAuthor = require('../models/bookauthor'); // Model for BookAuthor
 const Author = require('../models/author'); // Model for Author
 const Books = require('../models/books'); // Model for Books

@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const secretKey = process.env.JWT_SECRET_KEY;
 const Utils = require('../utils/decodeToken');
 const Author = require('../models/author');
 

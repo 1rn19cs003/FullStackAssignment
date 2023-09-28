@@ -1,5 +1,5 @@
 const Utils = require("../utils/decodeToken");
-const secretKey = process.env.JWT_SECRET_KEY;
+const secretKey = process.env.JWT_SECRET_KEY||'abhishek';
 exports.authenticateUser = async (req, res, next) => {
     // Check if the user is authenticated (e.g., by checking if a user session exists).
     if (req.isAuthenticated()) {

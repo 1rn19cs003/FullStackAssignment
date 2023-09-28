@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const secretKey = process.env.JWT_SECRET_KEY;
+const secretKey = process.env.JWT_SECRET_KEY||'abhishek';
 class Utils {
     static async decodeToken(tokenToVerify, secretKey) {
         try {
