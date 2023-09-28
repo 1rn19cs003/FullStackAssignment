@@ -9,50 +9,178 @@ Assignment what I need to do you can find it here \
 ┣ 📜.gitignore
 ┣ 📜app.js
 ┣ 📂config
- ┃ ┣ 📜database.js
- ┃ ┣ 📜swagger.config.const.js
- ┃ ┣ 📜swaggerConfig.js
+┃ ┣ 📜database.js
+┃ ┣ 📜swagger.config.const.js
+┃ ┣ 📜swaggerConfig.js
 ┣ 📂controllers
- ┃ ┣ 📜autherBookController.js
- ┃ ┣ 📜authorController.js
- ┃ ┣ 📜bookController.js
- ┃ ┣ 📜customerController.js
- ┃ ┣ 📜orderController.js
- ┃ ┣ 📜orderItemController.js
- ┃ ┣ 📜userController.js
+┃ ┣ 📜autherBookController.js
+┃ ┣ 📜authorController.js
+┃ ┣ 📜bookController.js
+┃ ┣ 📜customerController.js
+┃ ┣ 📜orderController.js
+┃ ┣ 📜orderItemController.js
+┃ ┣ 📜userController.js
 ┣ 📜database.sql
 ┣ 📜index.js
 ┣ 📜logger.js
 ┣ 📂middlware
- ┃ ┣ 📜auth.js
- ┃ ┣ 📜request-logger.js
+┃ ┣ 📜auth.js
+┃ ┣ 📜request-logger.js
 ┣ 📂models
- ┃ ┣ 📜author.js
- ┃ ┣ 📜bookauthor.js
- ┃ ┣ 📜books.js
- ┃ ┣ 📜customer.js
- ┃ ┣ 📜orderItems.js
- ┃ ┣ 📜orders.js
- ┃ ┣ 📜user.js
+┃ ┣ 📜author.js
+┃ ┣ 📜bookauthor.js
+┃ ┣ 📜books.js
+┃ ┣ 📜customer.js
+┃ ┣ 📜orderItems.js
+┃ ┣ 📜orders.js
+┃ ┣ 📜user.js
 ┣ 📜now.json
 ┣ 📜package-lock.json
 ┣ 📜package.json
 ┣ 📜README.md
 ┣ 📂routes
- ┃ ┣ 📜authorbookRoutes.js
- ┃ ┣ 📜authorRoutes.js
- ┃ ┣ 📜bookRoutes.js
- ┃ ┣ 📜customerRoutes.js
- ┃ ┣ 📜indexRoute.js
- ┃ ┣ 📜orderitemRoutes.js
- ┃ ┣ 📜orderRoutes.js
- ┃ ┣ 📜userRoutes.js
+┃ ┣ 📜authorbookRoutes.js
+┃ ┣ 📜authorRoutes.js
+┃ ┣ 📜bookRoutes.js
+┃ ┣ 📜customerRoutes.js
+┃ ┣ 📜indexRoute.js
+┃ ┣ 📜orderitemRoutes.js
+┃ ┣ 📜orderRoutes.js
+┃ ┣ 📜userRoutes.js
 ┣ 📂utils
- ┃ ┣ 📜decodeToken.js
+┃ ┣ 📜decodeToken.js
 ┣ 📜vercel.json
 ```
+## Breif Overview of Project
 
-## Firstly let’s create a web server:
+So, basically, I had a problem statement that required me to build an online book management server. I had several technology options to choose from (Node.js, PHP, Spring Boot, Flask, Django, etc.), and I chose Node.js because it's not a very large server and contains only some basic features. Moreover, it can be enhanced in the future, making it a perfect choice for a microservices-based architecture.
+
+Later on, the challenge was to assign permissions based on specific roles like customer and admin. To achieve this, I used the MVC architecture, which is ideal for handling services such as authentication, authorization, and various forms of validation, making the code more reusable rather than writing the same functions again and again. Additionally, I implemented middleware to ensure that only valid users can access the server.
+
+To take this project to the next level, I plan to incorporate an API Gateway, which will further enhance the security of the application server. This will allow for more advanced security measures in the future.
+
+Regarding the database, I opted for a relatively simple one. However, we can use a more structured database and enable all the necessary services. I have included the database schema and written it in the database.sql file. I have also written the scripts for both the database and schema, which are present in some files.
+
+Moreover, the architecture I have used includes:
+
+- `models`: Contains the access to the database and performs queries required based on the function calls.\
+- `controllers`: Handle validation checks before performing queries in the database. They also generate login tokens and handle session storage.\
+- `routes`: Contain the Swagger structure along with controller calls and middleware security.\
+- `middleware`: Contains all the middlewares for authentication, logging, etc.\
+- `utils`: Contains functions used repeatedly in different files and components, reducing the need to rewrite the same code.\
+- `app.js`: The main file where all routes and security measures are called. It uses functions to implement sessions, Swagger, CORS, Helmet, etc.\
+- `config`: Contains configurations for the database and Swagger UI.
+
+## Running The Project Locally in your system
+Clone the Project in your local system or you can download the zip file and can extract it
+
+To clone -
+```bash
+$ git clone https://github.com/1rn19cs003/FullStackAssignment.git [folder_name_optional]
+```
+
+To run our application locally we need to execute the command below from the root folder of the project to install the required dependencies
+
+```bash
+npm install 
+```
+This should install the node_module package which has all the necessary packages to run the code
+then to run your server you need to execute this command
+```bash
+$ npm start
+```
+This should launch a server at `http://localhost:{port}`. You may change port by modifying the value inside `.env`, which
+I am assuming at PORT=3000.\
+This should launch a new browser window with URL http://localhost:3000/. You'll see something similar as shown above.<br><br>
+
+This should open a new browser window with the following message:
+`Server is running at http://localhost:${PORT}/api/` where ${PORT} is set as an environment variable or defaulted to `3000`
+```json
+{"message":"Hello World!"}
+```
+The packages we has used in this project has been explained below to understand properly
+
+
+
+# PS: If you have any suggestion about what can be improved please share your thoughts I would really appreciate that!
+
+<img align="right" src="photos/Main.png" width="100%"/>&nbsp;
+&nbsp;
+
+#
+I have created a database schema, which is very basic. The primary motive was to create a server with features like authentication, authorization, error handling, and a logger to track API requests and responses. Currently, I am displaying these logs in the terminal. However, we can connect it to a database to store and track them. Additionally, one can create a trigger query to clean the old logs periodically
+
+
+## Database
+Database Schema can be seen here how I approached based on the problem statement 
+[Database schema](https://dbdiagram.io/d/assignment-6511f074ffbf5169f0794181)
+
+The Database is used in this project is Postgres SQL and can be connected easily with nodejs using some bunch of code which is written below.
+
+
+```JavaScript
+
+const { Pool } = require('pg');
+require('dotenv').config();
+
+const pool = new Pool({
+    connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+})
+
+
+/*
+We can use normal try and catch block but in postgress
+there is one problem while working with online-databse that it 
+mighth try to reconnect if you are not using your server 
+so to prevent from that we again and agin try to connect in config file 
+to aviod any Miss operations of Query
+*/
+
+const connectWithRetry = () => {
+    console.log(`Connecting to the database...${process.env.PORT}`);
+    // ${process.env.POSTGRES_URL}`
+    pool.connect((err, client, release) => {
+        if (err) {
+            console.error('Database connection error:', err);
+            setTimeout(connectWithRetry, 5000); // Retry after 5 seconds
+        } else {
+            // console.log(client);
+            console.log('Connected to the database');
+            release(); // Release the connection
+        }
+    });
+};
+
+connectWithRetry();
+
+
+module.exports = pool;
+
+```
+You need to specify the `port` name that's it in your `.env` file and then it'll start working
+
+# API Documentation
+The API is documented using [Swagger UI Express](https://full-stack-assignment-gamma.vercel.app/api-docs/#/).
+
+
+All the endpoints are given in the swagger UI which was my motive to use the Swagger
+
+The generated docs will look like this :
+The swagger Screen shots have been attached you can see that .
+
+
+If you want to test it out using [Postman](https://www.postman.com/), make sure your request has an **Authorization** header
+If you see that, then congratulations 🎉🎊 You have successfully started your first Node Express Application Specification.
+If you see that, then congratulations - your local environment is working correctly and ready for use.
+
+    
+
+## Nodejs server built and maintained by [Abhishek Jaiswal ](https://www.linkedin.com/in/abhishekjaiswal1308/)
+
+
+## `*************************************************************`
+
+## In order to create your own web server:
 
 ## Navigate the cursor to the file I will create the project in the terminal and I am creating the package.json file with the following command:
 
@@ -158,53 +286,47 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 ```
 
-# &#x1F34E; PS: If you have any suggestion about what can be improved please share your thoughts I would really appreciate that!
+The important this you need to add for swagger is some couple of codes to mkae the UI work.
+```JavaScript
+// Import the 'swagger-jsdoc' library to generate Swagger documentation.
+const swaggerJsdoc = require('swagger-jsdoc');
 
-<img align="right" src="photos/Main.png" width="100%"/>&nbsp;
-&nbsp;
+// Define Swagger options for generating API documentation.
+const options = {
+    // Define the API information.
+    definition: {
+        openapi: "3.0.0", // Specify the OpenAPI version.
+        info: {
+            title: "Library API", // API title.
+            version: "1.0.0", // API version.
+            description: "A simple Express Library API", // API description.
+            termsOfService: "http://example.com/terms/", // Terms of service URL.
+            contact: {
+                name: "Abhishek Jaiswal", // Contact name.
+                url: "https://www.linkedin.com/in/abhishekjaiswal1308/", // Contact URL.
+                email: "abhigrmr@gmail.com", // Contact email.
+            },
+        },
+        // Define the server where the API documentation is hosted.
+        servers: [
+            {
+                url: "https://full-stack-assignment-gamma.vercel.app/", // Base URL of the API.
+                description: "My API Documentation", // Description of the server.
+            },
+        ],
+    },
+    // Specify the files to scan for API endpoints.
+    apis: ['./routes/*.js'], // Scan all JavaScript files in the 'routes' directory.
+};
 
-# I have created a database schema, which is very basic. The primary motive was to create a server with features like authentication, authorization, error handling, and a logger to track API requests and responses. Currently, I am displaying these logs in the terminal. However, we can connect it to a database to store and track them. Additionally, one can create a trigger query to clean the old logs periodically
+// Generate the Swagger specification using the defined options.
+const specs = swaggerJsdoc(options);
 
+// Export the Swagger specification for use in the application.
+module.exports = specs;
 
-##
-Database Schema can be seen here how I approached based on the problem statement 
-[Database schema](https://dbdiagram.io/d/assignment-6511f074ffbf5169f0794181)
-# API Documentation
-The API is documented using [Swagger UI Express](https://www.npmjs.com/package/swagger-ui-express).
-The generated docs will look like this :
-The above swagger Screen shots have been attached you can see that in the upper section
-## Running The Project Locally
-Clone the Project in your local system or you can download the zip file and can extract it
-
-To clone -
-```bash
-$ git clone https://github.com/1rn19cs003/FullStackAssignment.git [folder_name_optional]
 ```
 
-To run our application locally we need to execute the command below from the root folder of the project to install the required dependencies
+Import the above code into your app.js file
 
-```bash
-npm install 
-```
-This should install the node_module package which has all the necessary packages to run the code
-then to run your server you need to execute this command
-```bash
-$ npm start
-```
-This should launch a server at `http://localhost:{port}`. You may change port by modifying the value inside `.env`, which
-I am assuming at PORT=3000.\
-This should launch a new browser window with URL http://localhost:3000/. You'll see something similar as shown above.<br><br>
-
-This should open a new browser window with the following message:
-`Server is running at http://localhost:${PORT}/api/` where ${PORT} is set as an environment variable or defaulted to `3000`
-```json
-{"message":"Hello World!"}
-```
-
-If you want to test it out using [Postman](https://www.postman.com/), make sure your request has an **Authorization** header
-If you see that, then congratulations 🎉🎊 You have successfully started your first Node Express Application Specification.
-If you see that, then congratulations - your local environment is working correctly and ready for use. If not please raise an issue so it can
-
-    
-
-## Nodejs server built and maintained by [Abhishek Jaiswal ](https://www.linkedin.com/in/abhishekjaiswal1308/)
+Then based on your requirements start the code 
