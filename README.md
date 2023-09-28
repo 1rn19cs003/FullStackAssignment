@@ -1,6 +1,6 @@
 # FullStackAssignment
 Assignment what I need to do you can find it here \
-[Download PDF](https://example.com/path-to-your-pdf-file.pdf)
+[Download PDF](https://drive.google.com/file/d/1m5e32Gs7A3TiM-Z5C0H9q6TNGLr7DaJD/view?usp=sharing)
 ## Follow the steps below to create a wokring server using swager!
 
 ## Here is the Tree
@@ -163,6 +163,48 @@ const swaggerJsdoc = require("swagger-jsdoc");
 <img align="right" src="photos/Main.png" width="100%"/>&nbsp;
 &nbsp;
 
-# I have created Database schema which is very basic but the motive was to create a server which has features like Authentication , Autherisation ,  
+# I have created a database schema, which is very basic. The primary motive was to create a server with features like authentication, authorization, error handling, and a logger to track API requests and responses. Currently, I am displaying these logs in the terminal. However, we can connect it to a database to store and track them. Additionally, one can create a trigger query to clean the old logs periodically
+
+
+##
+Database Schema can be seen here how I approached based on the problem statement 
+[Database schema](https://dbdiagram.io/d/assignment-6511f074ffbf5169f0794181)
+# API Documentation
+The API is documented using [Swagger UI Express](https://www.npmjs.com/package/swagger-ui-express).
+The generated docs will look like this :
+The above swagger Screen shots have been attached you can see that in the upper section
+## Running The Project Locally
+Clone the Project in your local system or you can download the zip file and can extract it
+
+To clone -
+```bash
+$ git clone https://github.com/1rn19cs003/FullStackAssignment.git [folder_name_optional]
+```
+
+To run our application locally we need to execute the command below from the root folder of the project to install the required dependencies
+
+```bash
+npm install 
+```
+This should install the node_module package which has all the necessary packages to run the code
+then to run your server you need to execute this command
+```bash
+$ npm start
+```
+This should launch a server at `http://localhost:{port}`. You may change port by modifying the value inside `.env`, which
+I am assuming at PORT=3000.\
+This should launch a new browser window with URL http://localhost:3000/. You'll see something similar as shown above.<br><br>
+
+This should open a new browser window with the following message:
+`Server is running at http://localhost:${PORT}/api/` where ${PORT} is set as an environment variable or defaulted to `3000`
+```json
+{"message":"Hello World!"}
+```
+
+If you want to test it out using [Postman](https://www.postman.com/), make sure your request has an **Authorization** header
+If you see that, then congratulations 🎉🎊 You have successfully started your first Node Express Application Specification.
+If you see that, then congratulations - your local environment is working correctly and ready for use. If not please raise an issue so it can
+
+    
 
 ## Nodejs server built and maintained by [Abhishek Jaiswal ](https://www.linkedin.com/in/abhishekjaiswal1308/)
