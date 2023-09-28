@@ -13,7 +13,7 @@ const SWAGGER_OPTIONS = {
         info: {
             title: "FullStack Assignment",
             version: "0.1.0",
-            description: "This document provides API endpoints for PlacXpert",
+            description: "This document provides API endpoints for Full Stack",
             license: {
                 name: "MIT",
                 url: "https://spdx.org/licenses/MIT.html",

@@ -61,6 +61,9 @@ To take this project to the next level, I plan to incorporate an API Gateway, wh
 
 Regarding the database, I opted for a relatively simple one. However, we can use a more structured database and enable all the necessary services. I have included the database schema and written it in the database.sql file. I have also written the scripts for both the database and schema, which are present in some files.
 
+Also I have added the logger in order or see the logs files and Error messages . and tells the resquest and response as well . This can be extended to the next level as the logger messages can be written down into the database and can further showed in the form of APIs request
+
+
 Moreover, the architecture I have used includes:
 
 - `models`: Contains the access to the database and performs queries required based on the function calls.\
