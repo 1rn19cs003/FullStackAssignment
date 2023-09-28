@@ -174,7 +174,12 @@ If you want to test it out using [Postman](https://www.postman.com/), make sure 
 If you see that, then congratulations 🎉🎊 You have successfully started your first Node Express Application Specification.
 If you see that, then congratulations - your local environment is working correctly and ready for use.
 
-    
+## Challenges
+The challenges I faced during this development included deployment issues. Although I have deployed several webpages and other backend services before, this time, I attempted to use `Vercel` and there was an issue with the rendering of the Swagger documentation. It took me one and a half days to resolve it, which led me to switch from Vercel to AWS EC2 for server deployment.
+
+Additionally, creating the database schema for the complex one was time-consuming, as it required careful consideration of all the attributes.
+
+I acknowledge that this may not be a perfect piece of work, but I did my best within the given time constraints. I can assure you that if necessary, I can further enhance the security and reliability of this project
 
 ## Nodejs server built and maintained by [Abhishek Jaiswal ](https://www.linkedin.com/in/abhishekjaiswal1308/)
 
