@@ -1,7 +1,7 @@
 # FullStackAssignment
 Assignment what I need to do you can find it here \
 [Download PDF](https://drive.google.com/file/d/1m5e32Gs7A3TiM-Z5C0H9q6TNGLr7DaJD/view?usp=sharing)
-## Follow the steps below to create a wokring server using swager!
+## Follow the steps below to create a wokring server using Nodejs!
 
 ## Here is the Tree
 
@@ -107,11 +107,12 @@ The packages we has used in this project has been explained below to understand 
 <img align="right" src="photos/Main.png" width="100%"/>&nbsp;
 &nbsp;
 
-#
-I have created a database schema, which is very basic. The primary motive was to create a server with features like authentication, authorization, error handling, and a logger to track API requests and responses. Currently, I am displaying these logs in the terminal. However, we can connect it to a database to store and track them. Additionally, one can create a trigger query to clean the old logs periodically
+
 
 
 ## Database
+I have created a database schema, which is very basic. The primary motive was to create a server with features like authentication, authorization, error handling, and a logger to track API requests and responses. Currently, I am displaying these logs in the terminal. However, we can connect it to a database to store and track them. Additionally, one can create a trigger query to clean the old logs periodically
+
 Database Schema can be seen here how I approached based on the problem statement 
 [Database schema](https://dbdiagram.io/d/assignment-6511f074ffbf5169f0794181)
 
@@ -329,4 +330,4 @@ module.exports = specs;
 
 Import the above code into your app.js file
 
-Then based on your requirements start the code 
+Then based on your requirements start the code.❤️
