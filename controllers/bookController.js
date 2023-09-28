@@ -2,10 +2,6 @@ const Books = require('../models/books');
 
 exports.getAllBooks = async (req, res) => {
     try {
-        // const authToken = req.cookies.authToken;
-        // console.log(authToken);
-        // const decodedInfo = await Utils.decodeToken(authToken, secretKey);
-        // console.log(decodedInfo);
         const books = await Books.findAll();
         res.status(200).send(books);
     } catch (error) {

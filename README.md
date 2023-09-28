@@ -51,7 +51,7 @@ Assignment what I need to do you can find it here \
 ┃ ┣ 📜decodeToken.js
 ┣ 📜vercel.json
 ```
-## Breif Overview of Project
+# Breif Overview of Project
 
 So, basically, I had a problem statement that required me to build an online book management server. I had several technology options to choose from (Node.js, PHP, Spring Boot, Flask, Django, etc.), and I chose Node.js because it's not a very large server and contains only some basic features. Moreover, it can be enhanced in the future, making it a perfect choice for a microservices-based architecture.
 
@@ -102,7 +102,7 @@ The packages we has used in this project has been explained below to understand 
 
 
 
-# PS: If you have any suggestion about what can be improved please share your thoughts I would really appreciate that!
+## PS: If you have any suggestion about what can be improved please share your thoughts I would really appreciate that!
 
 <img align="right" src="photos/Main.png" width="100%"/>&nbsp;
 &nbsp;
@@ -110,7 +110,7 @@ The packages we has used in this project has been explained below to understand 
 
 
 
-## Database
+# Database
 I have created a database schema, which is very basic. The primary motive was to create a server with features like authentication, authorization, error handling, and a logger to track API requests and responses. Currently, I am displaying these logs in the terminal. However, we can connect it to a database to store and track them. Additionally, one can create a trigger query to clean the old logs periodically
 
 Database Schema can be seen here how I approached based on the problem statement 
@@ -173,12 +173,108 @@ If you want to test it out using [Postman](https://www.postman.com/), make sure 
 If you see that, then congratulations 🎉🎊 You have successfully started your first Node Express Application Specification.
 If you see that, then congratulations - your local environment is working correctly and ready for use.
 
-## Challenges
+# Challenges
 The challenges I faced during this development included deployment issues. Although I have deployed several webpages and other backend services before, this time, I attempted to use `Vercel` and there was an issue with the rendering of the Swagger documentation. It took me one and a half days to resolve it, which led me to switch from Vercel to AWS EC2 for server deployment.
 
 Additionally, creating the database schema for the complex one was time-consuming, as it required careful consideration of all the attributes.
 
 I acknowledge that this may not be a perfect piece of work, but I did my best within the given time constraints. I can assure you that if necessary, I can further enhance the security and reliability of this project
+
+
+# Future Enhancements
+- The pagination feature was added, but it cannot be used with Swagger. We need to call it explicitly, so I removed it. However, for reference, I have attached the screenshots.
+<img align="right" src="photos/pagination.png" width="100%"/>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+- Search Funtinality also can be added into it .
+
+
+- You can find the swagger related screenshots and the importance about how to use it.
+
+
+# When and what to use ?
+
+## AuthorBooks
+- You need to login with either admin or customer to acess this 
+- inclued all CRUD opeations \
+<img align="right" src="photos/authorBooks.png" width="100%"/>&nbsp;
+&nbsp;
+&nbsp; 
+&nbsp;
+
+
+## Author
+- You only need to login with admin to acess this 
+- inclued all CRUD opeations 
+- to used only read of all files you can login with customer and can cess one api only \
+<img align="right" src="photos/author.png" width="100%"/>&nbsp;
+&nbsp;
+&nbsp; 
+&nbsp;
+
+## Books
+- You only need to login with admin to acess this 
+- inclued all CRUD opeations 
+- to used only read of all files you can login with customer and can cess one api only \
+<img align="right" src="photos/Book.png" width="100%"/>&nbsp;
+&nbsp;
+&nbsp; 
+&nbsp;
+
+## Customer
+- You only need to login with either admin or customer to acess this 
+- inclued all CRUD opeations \
+<img align="right" src="photos/Customer.png" width="100%"/>&nbsp;
+&nbsp;
+&nbsp; 
+&nbsp;
+
+
+## OrderItem
+- You only need to login with either admin or customer to acess this 
+- inclued all CRUD opeations \
+<img align="right" src="photos/OrderItem.png" width="100%"/>&nbsp;
+&nbsp;
+&nbsp; 
+&nbsp;
+
+
+## Order
+- You only need to login with either admin or customer to acess this 
+- inclued all CRUD opeations \
+<img align="right" src="photos/Order.png" width="100%"/>&nbsp;
+&nbsp;
+&nbsp; 
+&nbsp;
+
+## User and UserAuthentication
+- You can login via credentials mentioned below based on `admin` or `customer` role you can further call APIs
+- inclued all CRUD opeations 
+- Have Features like `SignUp` `Login` and `logout` \
+<img align="right" src="photos/user.png" width="100%"/>&nbsp;
+&nbsp;
+&nbsp; 
+&nbsp;
+## Credentials
+- `customer`
+```JOSN
+{
+  "username": "Abhishek",
+  "password": "abhi123",
+  "Role": "customer"
+}
+```
+- `admin`
+```JOSN
+{
+  "username": "abhishek",
+  "password": "abhi123",
+  "Role": "admin"
+}
+```
 
 ## Nodejs server built and maintained by [Abhishek Jaiswal ](https://www.linkedin.com/in/abhishekjaiswal1308/)
 

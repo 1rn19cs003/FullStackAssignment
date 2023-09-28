@@ -26,16 +26,6 @@ const host = process.env.HOST ||'ec2-34-238-39-43.compute-1.amazonaws.com';
 const secretKey = process.env.JWT_SECRET_KEY || 'abhishek';
 
 
-// const allowedOrigins =  // Add your allowed origins
-// const corsOptions = {
-//     origin: (origin, callback) => {
-//         if (allowedOrigins.includes(origin) || !origin) {
-//             callback(null, true);
-//         } else {
-//             callback(new Error('Not allowed by CORS'));
-//         }
-//     },
-// };
 
 
 // Middleware and route handling
