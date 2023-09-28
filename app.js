@@ -24,7 +24,7 @@ const authMiddleware = require('./middlware/auth');
 const cors = require('cors');
 
 const port = process.env.PORT || 3000;
-const host = process.env.HOST || 'localhost';
+const host = process.env.HOST || 'ec2-34-238-39-43.compute-1.amazonaws.com';
 const secretKey = process.env.JWT_SECRET_KEY;
 
 
