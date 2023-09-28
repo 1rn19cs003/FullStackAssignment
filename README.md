@@ -11,7 +11,7 @@ Assignment what I need to do you can find it here \
 ┃   ┣ 📜swagger.config.const.js
 ┃   ┣ 📜swaggerConfig.js
 ┣ 📂controllers
-┃   ┣ 📜autherBookController.js
+┃   ┣ 📜authorBookController.js
 ┃   ┣ 📜authorController.js
 ┃   ┣ 📜bookController.js
 ┃   ┣ 📜customerController.js
@@ -51,7 +51,7 @@ Assignment what I need to do you can find it here \
 ┣ 📜package.json
 ┣ 📜README.md
 ```
-# Breif Overview of Project
+# Brief Overview of Project
 
 So, basically, I had a problem statement that required me to build an online book management server. I had several technology options to choose from (Node.js, PHP, Spring Boot, Flask, Django, etc.), and I chose Node.js because it's not a very large server and contains only some basic features. Moreover, it can be enhanced in the future, making it a perfect choice for a microservices-based architecture.
 
@@ -61,7 +61,7 @@ To take this project to the next level, I plan to incorporate an API Gateway, wh
 
 Regarding the database, I opted for a relatively simple one. However, we can use a more structured database and enable all the necessary services. I have included the database schema and written it in the database.sql file. I have also written the scripts for both the database and schema, which are present in some files.
 
-Also I have added the logger in order or see the logs files and Error messages . and tells the resquest and response as well . This can be extended to the next level as the logger messages can be written down into the database and can further showed in the form of APIs request
+Also I have added the logger in order to see the logs files and Error messages . and tells the request and response as well . This can be extended to the next level as the logger messages can be written down into the database and can further showed in the form of APIs request
 
 
 Moreover, the architecture I have used includes:
@@ -172,9 +172,8 @@ The generated docs will look like this :
 The swagger Screen shots have been attached you can see that .
 
 
-If you want to test it out using [Postman](https://www.postman.com/), make sure your request has an **Authorization** header
-If you see that, then congratulations 🎉🎊 You have successfully started your first Node Express Application Specification.
-If you see that, then congratulations - your local environment is working correctly and ready for use.
+If you want to test it out using [Postman](https://www.postman.com/), make sure your request has an **Authorization** header ,
+If you see that, then congratulations 🎉🎊 You have successfully started your first Node Express Application Specification,your local environment is working correctly and ready for use.
 
 # Challenges
 The challenges I faced during this development included deployment issues. Although I have deployed several webpages and other backend services before, this time, I attempted to use `Vercel` and there was an issue with the rendering of the Swagger documentation. It took me one and a half days to resolve it, which led me to switch from Vercel to AWS EC2 for server deployment.
@@ -192,7 +191,7 @@ I acknowledge that this may not be a perfect piece of work, but I did my best wi
 &nbsp;
 
 
-- Search Funtinality also can be added into it .
+- Search functionality also can be added into it .
 
 
 - You can find the swagger related screenshots and the importance about how to use it.
@@ -202,7 +201,7 @@ I acknowledge that this may not be a perfect piece of work, but I did my best wi
 
 ## AuthorBooks
 - You need to login with either admin or customer to acess this 
-- inclued all CRUD opeations \
+- include all CRUD opeations \
 <img align="right" src="photos/authorBooks.png" width="100%"/>&nbsp;
 &nbsp;
 &nbsp; 
@@ -211,8 +210,8 @@ I acknowledge that this may not be a perfect piece of work, but I did my best wi
 
 ## Author
 - You only need to login with admin to acess this 
-- inclued all CRUD opeations 
-- to used only read of all files you can login with customer and can cess one api only \
+- include all CRUD opeations 
+- to used only read of all files you can login with customer and can access one api only \
 <img align="right" src="photos/Author.png" width="100%"/>&nbsp;
 &nbsp;
 &nbsp; 
@@ -220,16 +219,16 @@ I acknowledge that this may not be a perfect piece of work, but I did my best wi
 
 ## Books
 - You only need to login with admin to acess this 
-- inclued all CRUD opeations 
-- to used only read of all files you can login with customer and can cess one api only \
+- include all CRUD opeations 
+- to used only read of all files you can login with customer and can access one api only \
 <img align="right" src="photos/Book.png" width="100%"/>&nbsp;
 &nbsp;
 &nbsp; 
 &nbsp;
 
 ## Customer
-- You only need to login with either admin or customer to acess this 
-- inclued all CRUD opeations \
+- You only need to login with either admin or customer to access this 
+- include all CRUD opeations \
 <img align="right" src="photos/Customer.png" width="100%"/>&nbsp;
 &nbsp;
 &nbsp; 
@@ -237,8 +236,8 @@ I acknowledge that this may not be a perfect piece of work, but I did my best wi
 
 
 ## OrderItem
-- You only need to login with either admin or customer to acess this 
-- inclued all CRUD opeations \
+- You only need to login with either admin or customer to access this 
+- include all CRUD opeations \
 <img align="right" src="photos/OrderItem.png" width="100%"/>&nbsp;
 &nbsp;
 &nbsp; 
@@ -246,7 +245,7 @@ I acknowledge that this may not be a perfect piece of work, but I did my best wi
 
 
 ## Order
-- You only need to login with either admin or customer to acess this 
+- You only need to login with either admin or customer to access this 
 - inclued all CRUD opeations \
 <img align="right" src="photos/Order.png" width="100%"/>&nbsp;
 &nbsp;
@@ -255,7 +254,7 @@ I acknowledge that this may not be a perfect piece of work, but I did my best wi
 
 ## User and UserAuthentication
 - You can login via credentials mentioned below based on `admin` or `customer` role you can further call APIs
-- inclued all CRUD opeations 
+- include all CRUD opeations 
 - Have Features like `SignUp` `Login` and `logout` \
 <img align="right" src="photos/user.png" width="100%"/>&nbsp;
 &nbsp;
@@ -284,10 +283,8 @@ I acknowledge that this may not be a perfect piece of work, but I did my best wi
 
 ## `*************************************************************`
 
-## In order to create your own web server:
-
-## Navigate the cursor to the file I will create the project in the terminal and I am creating the package.json file with the following command:
-
+## In order to create your own web server using Node.js:
+## To initialize a new node project
 ```
 npm init --y
 ```
