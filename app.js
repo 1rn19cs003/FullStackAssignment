@@ -49,7 +49,7 @@ app.use(cors(corsOptions));
 app.use(logRequest);
 app.use(express.json());
 app.use(session({
-    keys: secretKey,
+    keys: ['abhishek'],
     cookie: {
         secure: true,
         maxAge: 60000
