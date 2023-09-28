@@ -1,5 +1,4 @@
 const logger = require('../logger') // Import the logger module
-const colors = require('colors/safe');
 function logRequest(req, res, next) {
     // Log the request URL and method
     logger.request(`${req.method} ${req.originalUrl}`);

@@ -1,5 +1,4 @@
 // Import necessary modules and models
-const jwt = require('jsonwebtoken'); // Module for JSON Web Tokens
 const BookAuthor = require('../models/bookauthor'); // Model for BookAuthor
 const Author = require('../models/author'); // Model for Author
 const Books = require('../models/books'); // Model for Books
@@ -33,7 +32,6 @@ exports.createBookAuthor = async (req, res) => {
             res.status(201).send({ message: "Author or Book Id is invalid" });
         }
     } catch (error) {
-        console.log('error', error)
         res.status(500).send({ message: 'server error' });
     }
 };
@@ -49,7 +47,6 @@ exports.getByBookAuthorId = async (req, res) => {
             res.status(201).send({ message: "Book Author Id is invalid" });
         }
     } catch (error) {
-        console.log('error', error)
         res.status(500).send({ message: 'server error' });
     }
 };
@@ -65,7 +62,6 @@ exports.deleteBookAuthor = async (req, res) => {
             res.status(201).send({ message: "Book Author Id is invalid" });
         }
     } catch (err) {
-        console.log('error', err);
         res.status(500).send({ message: 'server error' });
     }
 };
@@ -81,7 +77,6 @@ exports.updateBookAuthor = async (req, res) => {
             res.status(201).send({ message: "Book Author Id is invalid" });
         }
     } catch (err) {
-        console.log('error', err);
         res.status(500).send({ message: 'server error' });
     }
 };

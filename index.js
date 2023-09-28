@@ -9,9 +9,7 @@ function generateFolderStructure(rootDir, indent = '') {
     let structure = '';
     for (const file of files) {
         list = ['.babelrc', '.env', '.git', 'node_modules','logs'];
-        // console.log(file);
         if (list.includes(file)) {
-            // console.log(file);
             continue;
         }
         // if (file === 'node_modules') {

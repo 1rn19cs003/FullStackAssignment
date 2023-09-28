@@ -1,6 +1,5 @@
 const winston = require('winston');
 const colors = require('colors/safe');
-const DailyRotateFile = require('winston-daily-rotate-file');
 
 // Define log levels and their colors
 const logLevels = {
@@ -13,7 +12,6 @@ const logLevels = {
     response: 'yellow', // Custom log level for response logging
 };
 
-const colorizer = winston.format.colorize({ colors: logLevels });
 
 // Configure the Winston logger
 const logger = winston.createLogger({
@@ -26,7 +24,6 @@ const logger = winston.createLogger({
         winston.format.printf(({ timestamp, level, message }) => {
             const logColor = colors[logLevels[level]] || colors.white; // Default to white if color not found
             // const color=logColor._styles[0];
-            console.log("--------------");
             console.log(message);
             return logColor(`${timestamp} [${level}]: ${message}`);
         })

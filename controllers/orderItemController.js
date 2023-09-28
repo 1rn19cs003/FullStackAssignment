@@ -1,5 +1,3 @@
-const jwt = require('jsonwebtoken');
-const Utils = require('../utils/decodeToken');
 const OrderItems = require('../models/orderItems');
 const Order = require('../models/orders');
 const Books = require('../models/books');
@@ -26,7 +24,6 @@ exports.createOrderItems = async (req, res) => {
                 const orderItem = await OrderItems.create(k.OrderID, k.bookId, TotalAmount);
                 if (orderItem) {
                     const updatedBookQuantity = parseInt(checkBookId.quantityinstock) - parseInt(checkOrderId.quantity);
-                    const updatedBook = await Books.update(k.bookId, checkBookId.title, checkBookId.isbn, checkBookId.price, updatedBookQuantity);
                     res.status(200).send(orderItem);
                 } else {
                     res.status(201).send({ message: "Order Item Not created Due to some internal error" });

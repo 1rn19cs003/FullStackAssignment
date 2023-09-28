@@ -1,7 +1,6 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const secretKey = process.env.JWT_SECRET_KEY || 'abhishek';
-const Utils = require('../utils/decodeToken');
 
 exports.getUsers = async (req, res) => {
     try {

@@ -1,5 +1,3 @@
-const jwt = require('jsonwebtoken');
-const Utils = require('../utils/decodeToken');
 const Author = require('../models/author');
 
 exports.getAllAuthor = async (req, res) => {
@@ -15,7 +13,6 @@ exports.getAllAuthor = async (req, res) => {
 
 exports.createAuthor = async (req, res) => {
     try {
-        console.log(req.body);
         let k = req.body;
         const author = await Author.create(k.name);
         if(author){

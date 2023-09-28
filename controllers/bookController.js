@@ -1,5 +1,3 @@
-const jwt = require('jsonwebtoken');
-const Utils = require('../utils/decodeToken');
 const Books = require('../models/books');
 
 exports.getAllBooks = async (req, res) => {

@@ -1,7 +1,6 @@
 const express = require('express');
 const bookRouter = express.Router();
 const BookController = require('../controllers/bookController');
-const Utils = require('../utils/decodeToken');
 const authMiddleware = require('../middlware/auth');
 
 /**

@@ -145,7 +145,6 @@ const connectWithRetry = () => {
             console.error('Database connection error:', err);
             setTimeout(connectWithRetry, 5000); // Retry after 5 seconds
         } else {
-            // console.log(client);
             console.log('Connected to the database');
             release(); // Release the connection
         }
